@@ -1,10 +1,10 @@
 import java.util.*;
 class Solution {
-    static int[] dx = {1, 0, -1, 0};
-    static int[] dy = {0, 1, 0, -1};
-    static int cX = 0;
-    static int cY = 0;
-    static int[] current = new int[2];
+    int[] dx = {1, 0, -1, 0};
+     int[] dy = {0, 1, 0, -1};
+     int cX = 0;
+     int cY = 0;
+     int[] current = new int[2];
     public int solution(int[][] maps) {
         int answer = 0;
         int[][] visited = new int[maps.length][maps[0].length];
