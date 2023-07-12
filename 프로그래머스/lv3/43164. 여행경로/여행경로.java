@@ -12,10 +12,9 @@ class Solution {
         }
         for(int i=0;i<tickets.length;i++){
             if(tickets[i][0].equals(args[args.length-1]) && visited[i] == 0){
-                int[] newVisited = visited;
                 visited[i] = 1;
-                dfs(route + " " + tickets[i][1],count+1,newVisited);
-                newVisited[i] = 0;
+                dfs(route + " " + tickets[i][1],count+1,visited);
+                visited[i] = 0;
             }
         }
     }
