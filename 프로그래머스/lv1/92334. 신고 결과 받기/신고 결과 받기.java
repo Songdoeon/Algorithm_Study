@@ -16,8 +16,6 @@ class Solution {
             String[] reporter = reporters.split(" ");
             for(String str : reporter){
                 reportSet.add(str);   
-                // System.out.println(reporters);
-                // System.out.println(str);
             }
             if(reportSet.size()>=k){
                 Iterator<String> iter = reportSet.iterator();
