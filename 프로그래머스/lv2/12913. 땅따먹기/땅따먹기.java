@@ -11,9 +11,9 @@ class Solution {
                 land[row][column] += max;
             }
         }
-        int[] lastLand = land[len-1];
-        Arrays.sort(lastLand);
-        return lastLand[3];
+        // int[] lastLand = land[len-1];
+        Arrays.sort(land[len-1]);
+        return land[len-1][3];
     }
     int search(int[] arr, int index){
         int max = 0;
