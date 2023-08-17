@@ -1,23 +1,27 @@
+import java.util.*;
 class Solution {
-    int[][] scores;
-    int employeeNum;
-    boolean check(int[] score){
-        for(int idx = 0; idx < employeeNum; idx++){
-            if(score[0] < scores[idx][0] && score[1] < scores[idx][1]) return false;
-        }
-        return true;
-    }
     public int solution(int[][] scores) {
-        this.scores = scores;
-        employeeNum = scores.length;
-        int rank = 1;
-        int hostScore = scores[0][0] + scores[0][1];
-        if(!check(scores[0])) return -1;
-        for(int idx = 1; idx < employeeNum; idx++){
-            int score = scores[idx][0] + scores[idx][1];
-            if(score > hostScore && check(scores[idx])) rank++;
-            // if(score > hostScore) 
+        int answer = 0;
+        int max=0;
+        int[] target = scores[0];
+        Arrays.sort(scores,(a,b)->(a[0]!=b[0]?b[0]-a[0]:a[1]-b[1]));
+        
+        List<Integer> list = new ArrayList<>();
+        
+        for(int[] score :scores){
+            
+            if(score[1]<max){
+                if(score.equals(target)){
+                    return -1;
+                }
+            }else{
+                list.add(score[0]+score[1]);
+                max=Math.max(max,score[1]);
+            }                  
         }
-        return rank;
+        Collections.sort(list,Collections.reverseOrder());
+        answer = list.indexOf(target[0]+target[1])+1;
+        
+        return answer;
     }
 }
