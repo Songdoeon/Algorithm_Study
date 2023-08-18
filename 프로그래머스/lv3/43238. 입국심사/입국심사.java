@@ -1,31 +1,31 @@
 import java.util.*;
 class Solution {
-    int len;
+    int[] times;
+    int n;
     long answer = Long.MAX_VALUE;
-    public long solution(int n, int[] times) {
-        Arrays.sort(times);
-        len = times.length;
-        BinarySearch(times,n);
-        return answer;
-    }
-    void BinarySearch(int[] times, int n){
-        long left = 1, right = (long)n*times[len-1];
-        while(left < right){
-            long mid = (left+ right)/ 2;
-            // System.out.println(mid);
-            if(isPassed(n,times,mid)){
-                answer = Math.min(answer,mid);
-                right = mid;
-            }
-            else left = mid + 1;
-        }
-    }
-    boolean isPassed(int n, int[] times, long mid){
+    boolean isPassed(long time){
         long sum = 0;
-        for(int Index=0; Index < len; Index++){
-            sum += mid/times[Index];
+        for(int i = 0; i < times.length; i++){
+            sum += time / times[i];
         }
         if(sum >= n) return true;
-        else return false;
+        return false;
+    }
+    
+    public long solution(int n, int[] times) {
+        this.times = times;
+        this.n = n;
+        long low = 0;
+        long high = (long) n * times[times.length-1];
+        
+        while(low < high){
+            long mid = (high + low) / 2;
+            if(isPassed(mid)){
+                answer = Math.min(answer,mid);
+                high = mid;
+            }
+            else low = mid+1;
+        }
+        return answer;
     }
 }
