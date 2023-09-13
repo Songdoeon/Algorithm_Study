@@ -6,11 +6,11 @@ class Solution {
         
         int max = 1;
         int len = Math.min(numer, denom);
-        System.out.println(numer + " / " +denom);
         
         for(int i = 1; i <= len; i++){
             if(numer % i == 0 && denom % i == 0) max = i;
         }
+        
         return new int[] {(numer / max), (denom / max)};
     }
 }
