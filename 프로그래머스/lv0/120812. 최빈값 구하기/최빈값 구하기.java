@@ -1,7 +1,6 @@
 import java.util.*;
 class Solution {
     public int solution(int[] array) {
-        if(array.length == 1) return array[0];
         Map<Integer, Integer> map = new HashMap<>();
         
         for(int i = 0; i < array.length; i++){
