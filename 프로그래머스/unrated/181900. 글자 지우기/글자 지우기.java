@@ -10,10 +10,8 @@ class Solution {
         StringBuilder sb = new StringBuilder(my_string);
         int index = 0;
         for(int i : indices){
-            check(i, index);
-            sb.deleteCharAt(i);
-            index++;
+            sb.replace(i,i+1," ");
         }
-        return sb.toString();
+        return sb.toString().replace(" ","");
     }
 }
