@@ -29,6 +29,6 @@ public class Main {
 
             sb.append(arr[x2][y2] - arr[x2][y1] - arr[x1][y2] + arr[x1][y1]).append('\n');
         }
-        System.out.print(sb.toString());
+        System.out.print(sb);
     }
 }
