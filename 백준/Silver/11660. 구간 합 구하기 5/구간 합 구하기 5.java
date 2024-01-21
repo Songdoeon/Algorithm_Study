@@ -6,8 +6,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         StringBuilder sb = new StringBuilder();
-        int i = 0;
-        int j = 0;
+        int i, j, x1, x2, y1, y2;
 
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
@@ -23,13 +22,13 @@ public class Main {
         for(i = 0; i < M; i++){
             st = new StringTokenizer(br.readLine());
 
-            int x1 = Integer.parseInt(st.nextToken());
-            int y1 = Integer.parseInt(st.nextToken());
-            int x2 = Integer.parseInt(st.nextToken());
-            int y2 = Integer.parseInt(st.nextToken());
+            x1 = Integer.parseInt(st.nextToken()) - 1;
+            y1 = Integer.parseInt(st.nextToken()) - 1;
+            x2 = Integer.parseInt(st.nextToken());
+            y2 = Integer.parseInt(st.nextToken());
 
-            sb.append(arr[x2][y2] - arr[x2][y1 - 1] - arr[x1 - 1][y2] + arr[x1 - 1][y1 - 1]).append("\n");
+            sb.append(arr[x2][y2] - arr[x2][y1] - arr[x1][y2] + arr[x1][y1]).append('\n');
         }
-        System.out.println(sb.toString());
+        System.out.print(sb.toString());
     }
 }
