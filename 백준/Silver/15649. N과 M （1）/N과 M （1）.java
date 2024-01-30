@@ -5,26 +5,29 @@ public class Main{
 	static int N, M;
 	static boolean[] visited;
 	static StringBuilder sb = new StringBuilder();
-	static void search(int depth, String str) {
+	static void search(int depth, StringBuilder tempsb) {
 		if(depth == M) {
-			sb.append(str.substring(1)).append('\n');
+			sb.append(tempsb.substring(1)).append('\n');
 		}
-		
 		for(int i = 1; i <= N; i++) {
 			if(visited[i]) continue;
 			visited[i] = true;
-			search(depth + 1, str + " " + i);
+			int num = tempsb.length();
+			tempsb.append(" ").append(i);
+			search(depth + 1, tempsb);
+			if(depth == 0)tempsb.setLength(0);
+			else tempsb.setLength(num);
 			visited[i] = false;
 		}
 	}
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		
-		String[] arg = br.readLine().split(" ");
-		N = Integer.parseInt(arg[0]);
-		M = Integer.parseInt(arg[1]);
+		StringBuilder tempSb = new StringBuilder();
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
 		visited = new boolean[N + 1];
-		search(0,"");
+		search(0,tempSb);
 		System.out.println(sb);
 	}
 }
