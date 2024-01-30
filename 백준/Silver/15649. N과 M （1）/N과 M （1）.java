@@ -1,12 +1,13 @@
 import java.util.*;
 import java.io.*;
 
-public class Main {
+public class Main{
 	static int N, M;
 	static boolean[] visited;
+	static StringBuilder sb = new StringBuilder();
 	static void search(int depth, String str) {
 		if(depth == M) {
-			System.out.println(str.substring(1));
+			sb.append(str.substring(1)).append('\n');
 		}
 		
 		for(int i = 1; i <= N; i++) {
@@ -18,11 +19,12 @@ public class Main {
 	}
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String[] arg = br.readLine().split(" ");
 		
+		String[] arg = br.readLine().split(" ");
 		N = Integer.parseInt(arg[0]);
 		M = Integer.parseInt(arg[1]);
 		visited = new boolean[N + 1];
 		search(0,"");
+		System.out.println(sb);
 	}
 }
