@@ -8,16 +8,14 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
-		String[] arg = br.readLine().split(" ");
-		N = Integer.parseInt(arg[0]);
-		M = Integer.parseInt(arg[1]);
-		StringTokenizer st;
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
+		
 		int[] arr = new int[N + 1];
-		int[] sumArr = new int[N + 1];
 		st = new StringTokenizer(br.readLine());
 		for(int i = 1; i <= N; i++) {
-			arr[i] = Integer.parseInt(st.nextToken());
-			sumArr[i] = arr[i] + sumArr[i - 1];
+			arr[i] = arr[i - 1] + Integer.parseInt(st.nextToken());
 		}
 
 		for(int i = 0; i < M; i++) {
@@ -25,7 +23,7 @@ public class Main {
 			int start =Integer.parseInt(st.nextToken());
 			int end =Integer.parseInt(st.nextToken());
 
-			sb.append(sumArr[end] - sumArr[start] + arr[start]).append('\n');
+			sb.append(arr[end] - arr[start - 1]).append('\n');
 		}
 		System.out.println(sb);
 	}
