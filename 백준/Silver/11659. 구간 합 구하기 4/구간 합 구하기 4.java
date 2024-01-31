@@ -2,15 +2,13 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-	static int N;
-	static int M;
-	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		StringBuilder sb = new StringBuilder();
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		N = Integer.parseInt(st.nextToken());
-		M = Integer.parseInt(st.nextToken());
+		int N = Integer.parseInt(st.nextToken());
+		int M = Integer.parseInt(st.nextToken());
 		
 		int[] arr = new int[N + 1];
 		st = new StringTokenizer(br.readLine());
@@ -25,6 +23,9 @@ public class Main {
 
 			sb.append(arr[end] - arr[start - 1]).append('\n');
 		}
-		System.out.println(sb);
+		bw.write(sb.toString());
+		bw.flush();
+		bw.close();
+		br.close();
 	}
 }
