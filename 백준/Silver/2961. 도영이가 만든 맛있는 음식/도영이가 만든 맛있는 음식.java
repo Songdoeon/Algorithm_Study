@@ -1,9 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
-import java.util.stream.LongStream;
 
 public class Main {	
 
@@ -21,18 +19,25 @@ public class Main {
 			bitterArr[i] = Integer.parseInt(st.nextToken());
 		}
 		int min = Integer.MAX_VALUE;
-		int sour = 0;
-		int bitter = 0;
+		int sour, bitter;
+        if(N == 1) {
+            System.out.println(Math.abs(sourArr[0] - bitterArr[0]));
+            return ;
+        }
 		for(int i = 1; i < count; i++) {
 			sour = 1;
 			bitter = 0;
 			for(int j = 0; j < N; j++) {
-				if((i & 1 << j) != 0) {
+				if((i & (1 << j)) == (1 << j)) {
 					sour *= sourArr[j];
 					bitter += bitterArr[j];
 				}
 			}
 			min = Math.min(min, Math.abs(sour - bitter));
+            if(min == 0) {
+                System.out.println(0);
+                return ;
+            }
 		}
 		System.out.println(min);
 	}
