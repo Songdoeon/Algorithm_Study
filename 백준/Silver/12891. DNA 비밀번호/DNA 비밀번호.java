@@ -7,52 +7,37 @@ import java.util.StringTokenizer;
 public class Main {	
 	static int N,M;
 	static char[] dna;
-	static int[] count;
+	static int[] count = new int[26];
 	static char[] str;
 	static boolean check() {
-		for(int i = 0; i < 4; i++) {
-			if(count[i] > 0) return false;
-		}
-		return true;
+		return count[0] <= 0 && count[2] <= 0 && 
+				count[6] <= 0 && count[19] <= 0;
+
 	}
-	static void plus(int idx) {
-		switch(str[idx]) {
-			case 'A' : count[0]--;break;
-			case 'C' : count[1]--;break;
-			case 'G' : count[2]--;break;
-			case 'T' : count[3]--;break;
-		}
-	}
-	static void minus(int idx) {
-		switch(str[idx]) {
-		case 'A' : count[0]++;break;
-		case 'C' : count[1]++;break;
-		case 'G' : count[2]++;break;
-		case 'T' : count[3]++;break;
-		}
-	}
+
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
 		dna = new char[] {'A', 'C', 'G', 'T'};
-		count = new int[4];
 		int start = 0;
 		int end = M;
 		int answer = 0;
 		str = br.readLine().toCharArray();
 		st = new StringTokenizer(br.readLine());
-		for(int i = 0; i < 4; i++) {
-			count[i] = Integer.parseInt(st.nextToken());
-		}
+
+		count[0] = Integer.parseInt(st.nextToken());
+		count[2] = Integer.parseInt(st.nextToken());
+		count[6] = Integer.parseInt(st.nextToken());
+		count[19] = Integer.parseInt(st.nextToken());
 		for(int i = 0; i < M; i++) {
-			plus(i);
+			count[str[i]-'A']--;
 		}
 		if(check()) answer++;
 		while(end < N) {
-			plus(end++);
-			minus(start++);
+			count[str[end++] - 'A']--;
+			count[str[start++] - 'A']++;
 			if(check()) answer++;
 		}
 		System.out.println(answer);
