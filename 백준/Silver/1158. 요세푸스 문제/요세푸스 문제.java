@@ -9,19 +9,20 @@ public class Main {
 		StringBuilder sb = new StringBuilder();
 		N = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
-		Deque<Integer> queue = new ArrayDeque<>();
+		int[] arr = new int[N];
 		sb.append("<");
 		for(int i = 1; i <= N; i++) {
-			queue.add(i);
+
+			arr[i - 1] = i;
 		}
-		
-		while(!queue.isEmpty()) {
-			for(int i = 1;i < M; i++) {
-				queue.add(queue.poll());
-			}
-			sb.append(queue.poll()).append(", ");
-		}
-		sb.setLength(sb.length() - 2);
+
+		int idx = 0;
+		for (int i = 0; i < N - 1; i++) {
+			idx = (idx + M - 1) % (N - i);
+            sb.append(arr[idx]).append(", ");
+            System.arraycopy(arr, idx + 1, arr, idx, N - i - idx - 1);
+        }
+		sb.append(arr[0]);
 		sb.append(">");
 		System.out.println(sb);
 	}
