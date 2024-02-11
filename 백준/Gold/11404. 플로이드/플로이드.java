@@ -15,13 +15,7 @@ public class Main {
         int[][] arr = new int[N + 1][N + 1];
 
         for (int i = 1; i <= N; i++) {
-            for (int j = 1; j <= N; j++) {
-                arr[i][j] = INF;
-
-                if (i == j) {
-                    arr[i][j] = 0;
-                }
-            }
+            Arrays.fill(arr[i], INF);
         }
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
@@ -45,10 +39,10 @@ public class Main {
 
         for (int i = 1; i <= N; i++) {
             for (int j = 1; j <= N; j++) {
-                if (arr[i][j] == INF) {
-                    arr[i][j] = 0;
+                if (arr[i][j] == INF || i == j) {
+                    sb.append(0).append(' ');
                 }
-                sb.append(arr[i][j]).append(' ');
+                else sb.append(arr[i][j]).append(' ');
             }
             sb.append('\n');
         }
