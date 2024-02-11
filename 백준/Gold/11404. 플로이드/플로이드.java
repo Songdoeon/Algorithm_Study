@@ -22,8 +22,8 @@ public class Main {
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
             int cost = Integer.parseInt(st.nextToken());
-
-            arr[start][end] = Math.min(arr[start][end], cost);
+            
+            if(arr[start][end] > cost) arr[start][end] = cost;
         }
 
         for (int k = 1; k <= N; k++) {
