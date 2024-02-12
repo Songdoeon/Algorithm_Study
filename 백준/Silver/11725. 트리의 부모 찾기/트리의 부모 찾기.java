@@ -15,9 +15,8 @@ public class Main {
         graph.add(new ArrayList<>());
         for(int i = 1; i <=N; i++){
             graph.add(new ArrayList<>());
-            parents[i] = i;
         }
-        parents[1] = 0;
+        parents[1] = 1;
         for(int i = 1; i < N; i++){
             st = new StringTokenizer(br.readLine());
             n1 = Integer.parseInt(st.nextToken());
@@ -25,19 +24,19 @@ public class Main {
             graph.get(n1).add(n2);
             graph.get(n2).add(n1);
         }
-
         Queue<int[]> queue = new ArrayDeque<>();
         for(int n : graph.get(1)){
             queue.add(new int[] {n, 1});
             parents[n] = 1;
         }
+        int[] rel;
         while(!queue.isEmpty()) {
-            int[] r = queue.poll();
-            parents[r[0]] = r[1];
-            for(int n : graph.get(r[0])){
-                if(parents[n] != n) continue;
-                queue.add(new int[] {n, r[0]});
-                parents[n] = r[0];
+            rel = queue.poll();
+            parents[rel[0]] = rel[1];
+            for(int n : graph.get(rel[0])){
+                if(parents[n] != 0) continue;
+                queue.add(new int[] {n, rel[0]});
+                parents[n] = rel[0];
             }
         }
 
