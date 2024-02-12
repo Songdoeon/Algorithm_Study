@@ -5,28 +5,21 @@ public class Main {
     static int[] src, tgt;
     static boolean[] visited;
     static StringBuilder sb = new StringBuilder();
-    static StringBuilder tempSb = new StringBuilder();
-    static Set<String> set = new HashSet<>();
-    static void search(int depth, int idx){
-        if(idx == M){
-            tempSb.setLength(0);
+    static void search(int depth){
+        if(depth == M){
             for(int i = 0; i < M; i++){
-                tempSb.append(tgt[i]).append(' ');
+                sb.append(tgt[i]).append(' ');
             }
-            if(set.contains(tempSb.toString())) {
-                return ;
-            }
-            set.add(tempSb.toString());
-            sb.append(tempSb);
             sb.append('\n');
             return ;
         }
-
+        int num = 0;
         for(int i = 0; i < N; i++){
-            if(visited[i]) continue;
+            if(visited[i] || num == src[i]) continue;
             visited[i] = true;
-            tgt[idx] = src[i];
-            search(depth + 1, idx + 1);
+            tgt[depth] = src[i];
+            num = src[i];
+            search(depth + 1);
             visited[i] = false;
         }
     }
@@ -45,7 +38,7 @@ public class Main {
             src[i] = Integer.parseInt(st.nextToken());
         }
         Arrays.sort(src);
-        search(0, 0);
+        search(0);
         System.out.println(sb);
     }
 }
