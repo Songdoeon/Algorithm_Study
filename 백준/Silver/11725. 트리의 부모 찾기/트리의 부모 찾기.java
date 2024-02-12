@@ -30,7 +30,7 @@ public class Main {
             parents[n] = 1;
         }
         int[] rel;
-        while(!queue.isEmpty()){
+        while(!queue.isEmpty()) {
             rel = queue.poll();
             parents[rel[0]] = rel[1];
             for(int n : graph.get(rel[0])){
