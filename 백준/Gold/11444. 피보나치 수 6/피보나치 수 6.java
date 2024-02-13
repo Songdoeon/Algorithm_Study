@@ -4,14 +4,11 @@ public class Main {
 	static final int MOD = 1_000_000_007;
     
 	static long[][] mul(long[][] X, long[][] R){
-		long[][] C = {{0, 0}, {0, 0}};
-
-	    for(int i=0; i<2; i++)
-	        for(int j=0; j<2; j++)
-	            for(int k=0; k<2; k++)
-	                C[i][j] = (C[i][j] + X[i][k]*R[k][j]) % MOD;
-
-	    return C;
+		return new long[][] {{(X[0][0] * R[0][0] + X[0][1] * R[1][0]) % MOD,
+							(X[0][0] * R[0][1] + X[0][1] * R[1][1]) % MOD},
+							{(X[1][0] * R[0][0] + X[1][1] * R[1][0]) % MOD,
+								(X[1][0] * R[0][1] + X[1][1] * R[1][1]) % MOD}
+		};
 	}
 	
 	public static void main(String[] args) throws IOException {
@@ -27,7 +24,7 @@ public class Main {
         	X = mul(X, X);
         	N /= 2;
         }
-        
+
         System.out.println(E[0][1]);
     }
 }
