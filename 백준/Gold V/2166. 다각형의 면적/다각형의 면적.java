@@ -18,7 +18,12 @@ public class Main {
             sum +=  arr[i - 1][0] * arr[i][1] - arr[i][0] * arr[i - 1][1];
         }
         sum += arr[N][0] * arr[1][1] - arr[N][1] * arr[1][0];
-        System.out.printf("%.1f", (Math.round((double) Math.abs(sum) / 2 * 10) / 10.0));
+        sum = Math.abs(sum);
+        if(sum%2 == 1) {
+            System.out.println(sum/2 + ".5");
+        }else {
+            System.out.println(sum/2 + ".0");
+        }
     }
 }
 
