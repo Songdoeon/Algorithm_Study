@@ -1,5 +1,4 @@
 import java.io.*;
-import java.math.BigInteger;
 import java.util.*;
 
 public class Main {
@@ -11,17 +10,15 @@ public class Main {
         StringTokenizer st;
         N = Integer.parseInt(br.readLine());
         arr = new long[N + 1][2];
-        double sum = 0;
+        long sum = 0;
         for(int i = 1; i <= N ;i++) {
             st = new StringTokenizer(br.readLine());
             arr[i][0] = Long.parseLong(st.nextToken());
             arr[i][1] = Long.parseLong(st.nextToken());
-            sum += ((double) arr[i - 1][0] * arr[i][1]) - ((double) arr[i][0] * arr[i - 1][1]);
+            sum +=  arr[i - 1][0] * arr[i][1] - arr[i][0] * arr[i - 1][1];
         }
-        sum += ((double) arr[N][0] * arr[1][1]) - ((double) arr[N][1] * arr[1][0]);
-        sum = Math.abs(sum) / 2;
-        sum = Math.round(sum * 10.0) / 10.0;
-        System.out.printf("%.1f", sum);
+        sum += arr[N][0] * arr[1][1] - arr[N][1] * arr[1][0];
+        System.out.printf("%.1f", (Math.round((double) Math.abs(sum) / 2 * 10) / 10.0));
     }
 }
 
