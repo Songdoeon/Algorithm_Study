@@ -22,11 +22,11 @@ class Main{
         int K = Integer.parseInt(arg[1]);
         long answer = 0;
         StringTokenizer st;
-
+        int weight, price;
         for(int i = 0; i < N; i++){
             st = new StringTokenizer(br.readLine());
-            int weight = Integer.parseInt(st.nextToken());
-            int price = Integer.parseInt(st.nextToken());
+            weight = Integer.parseInt(st.nextToken());
+            price = Integer.parseInt(st.nextToken());
             jewelList.offer(new Jewel(weight, price));
         }
         int[] backArr = new int[K];
@@ -34,7 +34,6 @@ class Main{
             backArr[i] = Integer.parseInt(br.readLine());
         }
         Arrays.sort(backArr);
-
         for(int i = 0; i < K; i++){
             while(!jewelList.isEmpty() && jewelList.peek().weight <= backArr[i]){
                 Jewel jewel = jewelList.poll();
