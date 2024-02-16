@@ -5,10 +5,7 @@ import java.util.*;
 public class Main {
     static int R;
     static int C;
-
     static int answer;
-
-    static Queue<int[]> queue = new LinkedList<>();
     static Set<Character> set = new HashSet<>();
     static int[] dX = {0, 1, 0, -1};
     static int[] dY = {1, 0, -1, 0};
@@ -21,7 +18,7 @@ public class Main {
     static void search(int x, int y, int depth){
         char c = board[x][y];
         if(set.contains(c)) {
-            answer = Math.max(answer, depth);
+            if(answer < depth) answer = depth;
             return ;
         }
         set.add(c);
