@@ -3,17 +3,18 @@ import java.io.*;
 
 class Main{
     static StringBuilder sb = new StringBuilder();
-    static List<Integer>[] graph;
+    static List[] graph;
     static boolean[] visited;
     static int N, M, V;
 
     static void search(int n){
         visited[n] = true;
         sb.append(n).append(' ');
-        for(int next : graph[n]){
-            if(visited[next])continue;
-            visited[next] = true;
-            search(next);
+        List<Integer> childs = graph[n];
+        for(Integer child : childs){
+            if(visited[child])continue;
+            visited[child] = true;
+            search(child);
         }
     }
     public static void main(String[] args) throws IOException{
@@ -37,7 +38,7 @@ class Main{
             graph[end].add(start);
         }
         for(int i = 1; i <= N; i++){
-            graph[i].sort(Comparator.comparing(o -> o));
+            Collections.sort(graph[i]);
         }
         visited[V] = true;
         search(V);
@@ -50,10 +51,11 @@ class Main{
         while(!queue.isEmpty()){
             p = queue.poll();
             sb.append(p).append(' ');
-            for(int next : graph[p]){
-                if(visited[next])continue;
-                visited[next] = true;
-                queue.offer(next);
+            List<Integer> childs = graph[p];
+            for(Integer child : childs){
+                if(visited[child])continue;
+                visited[child] = true;
+                queue.offer(child);
             }
         }
         System.out.println(sb);
