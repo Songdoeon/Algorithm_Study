@@ -13,9 +13,9 @@ class Jewel{
 }
 class Main{
     static PriorityQueue<Integer> jewelQueue = new PriorityQueue<>(Collections.reverseOrder());
-    static PriorityQueue<Jewel> jewelList = new PriorityQueue<>((o1, o2) -> o1.weight == o2.weight ? o2.price - o1.price : o1.weight - o2.weight);
+    static PriorityQueue<Jewel> jewelList = new PriorityQueue<>(Comparator.comparingInt(o -> o.weight));
 
-    public static void main(String args[]) throws Exception{
+    public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String[] arg = br.readLine().split(" ");
         int N = Integer.parseInt(arg[0]);
