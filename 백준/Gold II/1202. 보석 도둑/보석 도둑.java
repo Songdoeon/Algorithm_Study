@@ -36,16 +36,12 @@ class Main{
         Arrays.sort(backArr);
 
         for(int i = 0; i < K; i++){
-            while(!jewelList.isEmpty()){
-                if(jewelList.peek().weight <= backArr[i]){
-                    Jewel jewel = jewelList.poll();
-                    jewelQueue.add(jewel.price);
-                }
-                else break;
+            while(!jewelList.isEmpty() && jewelList.peek().weight <= backArr[i]){
+                Jewel jewel = jewelList.poll();
+                jewelQueue.add(jewel.price);
             }
             if(!jewelQueue.isEmpty()) answer += jewelQueue.poll();
         }
-
         System.out.println(answer);
     }
 }
