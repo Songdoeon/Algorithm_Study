@@ -19,7 +19,7 @@ public class Main {
             cows[i][1] = Integer.parseInt(st.nextToken());
         }
 
-        Arrays.sort(cows, Comparator.comparingInt(o -> o[0]));
+        Arrays.sort(cows, ((o1, o2) -> o1[0] == o2[0] ? o2[1] - o1[1] : o1[0] - o2[0]));
         int start = cows[0][0];
         int end = cows[0][1];
         int ans = 1;
@@ -28,7 +28,6 @@ public class Main {
             return ;
         }
         for(int[] cow : cows) {
-            if(cow[1] < start) continue;
             if(cow[0] <= start){
                 end = Math.max(end, cow[1]);
             }
