@@ -29,15 +29,14 @@ public class Main {
         }
         for(int[] cow : cows) {
             if(cow[0] <= start){
-                end = Math.max(end, cow[1]);
+                if(end < cow[1]) end = cow[1];
             }
             else{
                 start = end + 1;
                 ans++;
                 if(cow[0] <= start){
-                    end = Math.max(end, cow[1]);
+                    if(end < cow[1]) end = cow[1];
                 }
-                else break;
             }
             if(end >= M) break;
         }
