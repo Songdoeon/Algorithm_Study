@@ -36,7 +36,7 @@ public class Main {
                 }
             }
         }
-        int[][] tempMap = new int[N][M];
+
         visited = new boolean[N][M];
         tempQueue.add(new int[] {0, 0});
         queue.add(new int[] {0, 0});
@@ -53,13 +53,11 @@ public class Main {
                     if (outOfMap(nx, ny) || !map[nx][ny]) continue;
                     if(visited[nx][ny]) continue;
                     visited[nx][ny] = true;
-                    tempMap[nx][ny] = 1;
                     tempQueue.add(new int[]{nx, ny});
                     queue.add(new int[] {nx, ny});
                 }
             }
-
-
+            
             int size = queue.size();
             for (int j = 0; j < size; j++) {
                 int[] p = queue.poll();
@@ -75,7 +73,6 @@ public class Main {
                 }
             if(cheese == 0) break;
             lastCheese = cheese;
-
         }
         System.out.println(time);
         System.out.println(lastCheese);
