@@ -1,37 +1,24 @@
 import java.io.*;
 import java.util.*;
 
-class Sett{
-    int a, b, c, d;
-
-    public Sett(int a, int b, int c, int d) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.d = d;
-    }
-}
-
-
 public class Main {
     static int N, d, k, c, max;
     static int[] tgt;
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+    public static void main(String[] args) throws Exception {
+        Reader in = new Reader();
 
-        N = Integer.parseInt(st.nextToken());
-        d = Integer.parseInt(st.nextToken());
-        k = Integer.parseInt(st.nextToken());
-        c = Integer.parseInt(st.nextToken());
+        N = in.nextInt();
+        d = in.nextInt();
+        k = in.nextInt();
+        c = in.nextInt();
         tgt = new int[k + 1];
         int[] init = new int[k];
         int[] dishes = new int[d + 1];
         int result = 1;
         dishes[c] = 1;
         for (int i = 1; i <= k; i++) {
-            int n = Integer.parseInt(br.readLine());
+            int n = in.nextInt();
             if(--dishes[tgt[i % k]] == 0) result -= 1;
             if(dishes[n]++ == 0) result += 1;
             tgt[i % k] = n;
@@ -40,7 +27,7 @@ public class Main {
 
         max = result;
         for (int i = k + 1; i <= N; i++) {
-            int n = Integer.parseInt(br.readLine());
+            int n = in.nextInt();
             if(--dishes[tgt[i % k]] == 0) result -= 1;
             if(dishes[n]++ == 0) result += 1;
             tgt[i % k] = n;
@@ -55,9 +42,36 @@ public class Main {
             if(--dishes[tgt[i % k]] == 0) result -= 1;
             if(dishes[n]++ == 0) result += 1;
             tgt[i % k] = n;
-            
+
             max = Math.max(max, result);
         }
         System.out.println(max);
+    }
+    static class Reader {
+        final int SIZE = 1 << 13;
+        byte[] buffer = new byte[SIZE];
+        int index, size;
+
+        int nextInt() throws Exception {
+            int n = 0;
+            byte c;
+            while ((c = read()) <= 32);
+            do n = (n << 3) + (n << 1) + (c & 15);
+            while (isNumber(c = read()));
+            return n;
+        }
+
+        boolean isNumber(byte c) {
+            return 47 < c && c < 58;
+        }
+
+        byte read() throws Exception {
+            if (index == size) {
+                size = System.in.read(buffer, index = 0, SIZE);
+                if (size < 0)
+                    buffer[0] = -1;
+            }
+            return buffer[index++];
+        }
     }
 }
