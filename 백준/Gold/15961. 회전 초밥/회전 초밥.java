@@ -19,8 +19,8 @@ public class Main {
         dishes[c] = 1;
         for (int i = 1; i <= k; i++) {
             int n = in.nextInt();
-            if(--dishes[tgt[i % k]] == 0) result -= 1;
-            if(dishes[n]++ == 0) result += 1;
+            if(--dishes[tgt[i % k]] == 0) result--;
+            if(dishes[n]++ == 0) result++;
             tgt[i % k] = n;
             init[i - 1] = n;
         }
@@ -28,8 +28,8 @@ public class Main {
         max = result;
         for (int i = k + 1; i <= N; i++) {
             int n = in.nextInt();
-            if(--dishes[tgt[i % k]] == 0) result -= 1;
-            if(dishes[n]++ == 0) result += 1;
+            if(--dishes[tgt[i % k]] == 0) result--;
+            if(dishes[n]++ == 0) result++;
             tgt[i % k] = n;
 
             max = Math.max(max, result);
@@ -39,8 +39,8 @@ public class Main {
         for(int i = N + 1; i <= N + k; i++){
             int n = init[idx++];
 
-            if(--dishes[tgt[i % k]] == 0) result -= 1;
-            if(dishes[n]++ == 0) result += 1;
+            if(--dishes[tgt[i % k]] == 0)result--;
+            if(dishes[n]++ == 0) result++;
             tgt[i % k] = n;
 
             max = Math.max(max, result);
