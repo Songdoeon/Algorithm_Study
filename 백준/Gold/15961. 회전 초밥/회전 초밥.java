@@ -32,46 +32,30 @@ public class Main {
         dishes[c] = 1;
         for (int i = 1; i <= k; i++) {
             int n = Integer.parseInt(br.readLine());
-            if(i % k == 0) {
-                if(dishes[n]++ == 0) result += 1;
-                tgt[k] = n;
-                init[i - 1] = n;
-            }
-            else {
-                if(dishes[n]++ == 0) result += 1;
-                tgt[i % k] = n;
-                init[i - 1] = n;
-            }
+            if(--dishes[tgt[i % k]] == 0) result -= 1;
+            if(dishes[n]++ == 0) result += 1;
+            tgt[i % k] = n;
+            init[i - 1] = n;
         }
+
         max = result;
         for (int i = k + 1; i <= N; i++) {
             int n = Integer.parseInt(br.readLine());
-            if(i % k == 0) {
-                if(--dishes[tgt[k]] == 0) result -= 1;
-                if(dishes[n]++ == 0) result += 1;
-                tgt[k] = n;
-            }
-            else {
-                if(--dishes[tgt[i % k]] == 0) result -= 1;
-                if(dishes[n]++ == 0) result += 1;
-                tgt[i % k] = n;
-            }
+            if(--dishes[tgt[i % k]] == 0) result -= 1;
+            if(dishes[n]++ == 0) result += 1;
+            tgt[i % k] = n;
+
             max = Math.max(max, result);
 
         }
         int idx = 0;
         for(int i = N + 1; i <= N + k; i++){
             int n = init[idx++];
-            if(i % k == 0) {
-                if(--dishes[tgt[k]] == 0) result -= 1;
-                if(dishes[n]++ == 0) result += 1;
-                tgt[k] = n;
-            }
-            else {
-                if(--dishes[tgt[i % k]] == 0) result -= 1;
-                if(dishes[n]++ == 0) result += 1;
-                tgt[i % k] = n;
-            }
+
+            if(--dishes[tgt[i % k]] == 0) result -= 1;
+            if(dishes[n]++ == 0) result += 1;
+            tgt[i % k] = n;
+            
             max = Math.max(max, result);
         }
         System.out.println(max);
