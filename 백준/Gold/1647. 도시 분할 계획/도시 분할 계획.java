@@ -1,56 +1,59 @@
 import java.io.*;
 import java.util.*;
-class Node{
-    int no, weight;
+class Edge{
+    int n1;
+    int n2;
+    int cost;
 
-    public Node(int no, int weight) {
-        this.no = no;
-        this.weight = weight;
+    public Edge(int n1, int n2, int cost) {
+        this.n1 = n1;
+        this.n2 = n2;
+        this.cost = cost;
     }
 }
 public class Main {
+    static int[] parents;
+    static int find(int n){
+        if(parents[n] == n) return n;
+        return parents[n] = find(parents[n]);
+    }
+    static boolean union(int n1, int n2){
+        int p1 = find(n1);
+        int p2 = find(n2);
+        if(p1 == p2) return true;
+
+        if(p1 > p2) parents[p2] = p1;
+        else parents[p1] = p2;
+        return false;
+    }
     static int N, M;
-    static ArrayList<Node>[] list;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        Queue<Node> queue = new PriorityQueue<>(Comparator.comparingInt(o -> o.weight));
-        Queue<Integer> costQueue = new PriorityQueue<>(Collections.reverseOrder());
+        Queue<Edge> queue = new PriorityQueue<>(Comparator.comparingInt(o -> o.cost));
         int cost = 0;
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
-        boolean[] visited = new boolean[N + 1];
-        list = new ArrayList[N + 1];
+        parents = new int[N + 1];
         for (int i = 1; i <= N; i++) {
-            list[i] = new ArrayList<>();
+            parents[i] = i;
         }
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
             int n1 = Integer.parseInt(st.nextToken());
             int n2 = Integer.parseInt(st.nextToken());
             int w = Integer.parseInt(st.nextToken());
-            list[n1].add(new Node(n2, w));
-            list[n2].add(new Node(n1, w));
+            queue.offer(new Edge(n1, n2, w));
         }
-        queue.offer(new Node(1, 0));
 
-        int v = 0;
-        while (!queue.isEmpty()){
-            Node now = queue.poll();
-            if(visited[now.no])continue;
-            visited[now.no] = true;
-            v++;
-            cost += now.weight;
-            costQueue.offer(now.weight);
-            if(v == N) break;
-
-            int size = list[now.no].size();
-            for (int i = 0; i < size; i++) {
-                Node next = list[now.no].get(i);
-                if(visited[next.no])continue;
-                queue.add(new Node(next.no, next.weight));
+        int e = 0;
+        while (e < N - 2){
+            Edge edge = queue.poll();
+            if(!union(edge.n1, edge.n2)){
+                e++;
+                cost += edge.cost;
             }
         }
-        System.out.println(cost - costQueue.poll());
+        System.out.println(cost);
     }
 }
