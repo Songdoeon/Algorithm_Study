@@ -23,7 +23,7 @@ public class Main {
 		Queue<Node> queue = new PriorityQueue<>((o1, o2) -> o1.cost - o2.cost);
 		int start = Integer.parseInt(br.readLine());
 		int[] costs = new int[N + 1];
-		boolean[] visited = new boolean[N + 1];
+        boolean[] visited = new boolean[N + 1];
 		Arrays.fill(costs, 200000);
 		for(int i = 0; i <= N; i++) {
 			list.add(new ArrayList<>());
@@ -41,12 +41,12 @@ public class Main {
 		costs[start] = 0;
 		while(!queue.isEmpty()) {
 			Node node = queue.poll();
-			// if(visited[node.des]) continue;
 			
+            if(visited[node.des]) continue;
+            visited[node.des] = true;
 			for(Node nextNode : list.get(node.des)) {
 				if(costs[nextNode.des] > costs[node.des] + nextNode.cost) {
 					costs[nextNode.des] = costs[node.des] + nextNode.cost;
-                    // visited[nextNode.des] = true;
 					queue.add(new Node(nextNode.des, costs[nextNode.des]));
 				}
 			}
