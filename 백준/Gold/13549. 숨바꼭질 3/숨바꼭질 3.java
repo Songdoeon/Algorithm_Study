@@ -1,79 +1,53 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
-class Node {
-	public int position;
-	public int time;
+class Node{
+    int no, cost;
 
-	public Node (int position, int time) {
-		this.position = position;
-		this.time = time;
-	}
+    public Node(int no, int cost) {
+        this.no = no;
+        this.cost = cost;
+    }
 }
-
 public class Main {
-	static int n, k;
-	static int minTime;	
+    static int N, K;
+    static boolean[] visited;
+    static Deque<Node> queue = new ArrayDeque<>();
+    public static void main(String[] args) throws Exception {
+        N = read();
+        K = read();
+        visited = new boolean[100_002];
+        visited[N] = true;
+        queue.add(new Node(N, 0));
+        int answer =  0;
 
-	static final int MAX_POSITION = 100_000;
-	static final int INF = 100_000;
-	static int[] time = new int[MAX_POSITION + 1];
-	static PriorityQueue<Node> pq = new PriorityQueue<>((o1, o2) -> o1.time - o2.time);
-
-	static void dijkstra() {
-
-		Arrays.fill(time, INF);
-		time[n] = 0;
-		pq.add(new Node(n, 0));
-
-		while (!pq.isEmpty()) {
-			Node current = pq.remove();
-
-
-			if (time[current.position] < current.time)
-				continue;
-
-			int np1 = current.position - 1;
-
-			if (isValid(np1) && time[np1] > current.time + 1) {
-				time[np1] = current.time + 1;
-				pq.add(new Node(np1, time[np1]));
-			}
-
-			int np2 = current.position + 1;
-			if (isValid(np2) && time[np2] > current.time + 1) {
-				time[np2] = current.time + 1;
-				pq.add(new Node(np2, time[np2]));
-			}
-
-			int np3 = current.position * 2;
-			if (isValid(np3) && time[np3] > current.time) {
-				time[np3] = current.time;
-				pq.add(new Node(np3, time[np3]));
-			}
-		}
-	}
-
-	static boolean isValid(int position) {
-		return 0 <= position && position <= MAX_POSITION;
-	}
-
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(
-				new InputStreamReader(System.in)
-		);
-		StringTokenizer st = new StringTokenizer(br.readLine());
-
-		n = Integer.parseInt(st.nextToken());
-		k = Integer.parseInt(st.nextToken());
-
-		if (n >= k)
-			minTime = n - k;
-		else {
-			dijkstra();
-			minTime = time[k];
-		}
-
-		System.out.println(minTime);
-	}
+        while (!queue.isEmpty()) {
+            Node n = queue.removeFirst();
+            if(n.no == K) {
+                answer = n.cost;
+                break;
+            }
+            int next = n. no * 2;
+            if (next <= K + 2 && !visited[next]) {
+                visited[next] = true;
+                queue.addFirst(new Node( next, n.cost));
+            }
+            next = n.no - 1;
+            if (next >= 0 && !visited[next]) {
+                visited[next] = true;
+                queue.addLast(new Node( next, n.cost + 1));
+            }
+            next = n.no + 1;
+            if (next <= 100000 && !visited[next]) {
+                visited[next] = true;
+                queue.addLast(new Node( next, n.cost + 1));
+            }
+        }
+        System.out.println(answer);
+    }
+    static int read() throws Exception {
+        int c, n = System.in.read() & 15;
+        while ((c = System.in.read()) > 32) n = (n << 3) + (n << 1) + (c & 15);
+        return n;
+    }
 }
