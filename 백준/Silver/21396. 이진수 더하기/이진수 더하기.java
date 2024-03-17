@@ -3,20 +3,19 @@ import java.util.*;
 
 public class Main {
     static int T, N, M;
-//    static int MX = 10_000_000;
-//    static char[][] arr = new char[200][MX];
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
         StringTokenizer st;
+        Map<Integer, Integer> map;
         T = Integer.parseInt(br.readLine());
         for (int t = 0; t < T; t++) {
-            Map<Integer, Integer> map = new HashMap<>();
             long cnt = 0;
             st = new StringTokenizer(br.readLine());
             N = Integer.parseInt(st.nextToken());
             M = Integer.parseInt(st.nextToken());
             st = new StringTokenizer(br.readLine());
+            map = new HashMap<>(N);
             for (int i = 0; i < N; i++) {
                 int n = Integer.parseInt(st.nextToken());
                 cnt += map.getOrDefault(n, 0);
