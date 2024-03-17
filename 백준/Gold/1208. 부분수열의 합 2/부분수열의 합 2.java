@@ -4,7 +4,7 @@ import java.util.*;
 public class Main {
     static int N, S;
     static int[] arr;
-    static Map<Integer, Integer> map = new HashMap<>();
+    static Map<Integer, Integer> map;
     static long answer = 0;
     static void search2(int depth, int end,int sum){
         if(depth == end) {
@@ -30,6 +30,7 @@ public class Main {
 
         N = Integer.parseInt(st.nextToken());
         S = Integer.parseInt(st.nextToken());
+        map = new HashMap<>((int) Math.pow(2, N/2));
         arr = new int[N];
         st = new StringTokenizer(br.readLine());
         for(int i = 0; i < N; i++) {
