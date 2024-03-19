@@ -37,10 +37,14 @@ public class Main {
                 }
                 int index = idx % N;
 
-                if(index == 0) System.arraycopy(arr, index, arr, index, N - index);
-                else System.arraycopy(arr, index, arr, index - 1, N - index);
-                if(index == 0) idx = N;
-                else idx = index - 1 ;
+                if(index == 0) {
+                    System.arraycopy(arr, index, arr, index, N - index);
+                    idx = N;
+                }
+                else{
+                    System.arraycopy(arr, index, arr, index - 1, N - index);
+                    idx = index - 1 ;
+                }
                 N--;
                 if(check(N)) break;
             }
