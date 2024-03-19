@@ -9,8 +9,9 @@ public class Main {
         int N = sc.nextInt();
         
         int high = A - B;
-        int floor = (N - A) / high;
-        if((N - A) % high != 0){
+        int num = N - A;
+        int floor = num / high;
+        if(num % high != 0){
             System.out.println(floor == 0 ? 2 : floor + 2);
         }
         else System.out.println(floor + 1);
