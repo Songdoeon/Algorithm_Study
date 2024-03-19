@@ -6,7 +6,7 @@ public class Main {
     static int[] tgt;
     static int sum;
     static StringBuilder sb = new StringBuilder();
-    static void search(int depth, int idx, int total){
+    static void search(int idx, int total){
         if(idx == N){
             if(sum >= total) return ;
             for (int i : tgt) {
@@ -15,11 +15,10 @@ public class Main {
             System.out.println(sb);
             System.exit(0);
         }
-//        if((sum - total) / (N - depth) > 9) return ;
-
+        if(Math.pow(9, (N - idx)) * total < sum) return ;
         for (int i = 1; i <= 9; i++) {
             tgt[idx] = i;
-            search(depth + 1, idx + 1, total * i);
+            search( idx + 1, total * i);
         }
     }
     public static void main(String[] args) throws IOException {
@@ -38,6 +37,6 @@ public class Main {
             System.out.println(-1);
             return ;
         }
-        search(0, 0, 1);
+        search(0, 1);
     }
 }
