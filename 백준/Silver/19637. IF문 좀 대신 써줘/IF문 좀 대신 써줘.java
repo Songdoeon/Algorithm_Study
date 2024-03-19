@@ -7,21 +7,21 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
         StringTokenizer st = new StringTokenizer(br.readLine());
-        Queue<Integer> queue = new ArrayDeque<>();
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
 
         int[] arr = new int[N];
         String[] names = new String[N];
-        for (int i = 0; i < N; i++) {
+        st = new StringTokenizer(br.readLine());
+        String name = st.nextToken();
+        int num = Integer.parseInt(st.nextToken());
+        arr[0] = num;
+        names[0] = name;
+        int n;
+        for (int i = 1; i < N; i++) {
             st = new StringTokenizer(br.readLine());
-            String name = st.nextToken();
-            int num = Integer.parseInt(st.nextToken());
-            if(i == 0){
-                arr[i] = num;
-                names[i] = name;
-                continue;
-            }
+            name = st.nextToken();
+            num = Integer.parseInt(st.nextToken());
             if(arr[i - 1] == num){
                 arr[i] = num;
                 names[i] = names[i - 1];
@@ -32,8 +32,8 @@ public class Main {
             }
         }
         for (int i = 0; i < M; i++) {
-            int num = Integer.parseInt(br.readLine());
-            int n = Arrays.binarySearch(arr, num);
+            num = Integer.parseInt(br.readLine());
+            n = Arrays.binarySearch(arr, num);
             if(n < 0){
                 sb.append(names[Math.abs(n + 1)]).append('\n');
             }
