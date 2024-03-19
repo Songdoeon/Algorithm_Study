@@ -9,8 +9,8 @@ public class Main {
     static void search(int idx, int total){
         if(idx == N){
             if(sum >= total) return ;
-            for (int i : tgt) {
-                sb.append(i).append(' ');
+            for(int i = 0; i < N; i++){
+                sb.append(tgt[i]).append(' ');
             }
             System.out.println(sb);
             System.exit(0);
