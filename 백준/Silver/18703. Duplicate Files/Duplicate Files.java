@@ -17,7 +17,7 @@ public class Main {
         int max = Integer.MAX_VALUE;
         while (T-- > 0){
             int N = Integer.parseInt(br.readLine());
-            map = new HashMap<>(N);
+            map = new HashMap<>();
             for (int i = 0; i < N; i++) {
                 st = new StringTokenizer(br.readLine());
                 String str = st.nextToken();
