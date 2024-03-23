@@ -25,6 +25,7 @@ public class Main {
         boolean[][] visited = new boolean[M + 1][N];
         for (int i = 0; i <= M; i++) {
             Arrays.fill(costs[i], 10);
+            costs[i][0] = 0;
         }
         for (int i = 0; i < N; i++) {
             graph.add(new ArrayList<>());
@@ -38,7 +39,9 @@ public class Main {
         }
 
         queue.add(new Node(0, 0,0));
-        costs[0][0] = 0;
+        for (int i = 1; i <= M; i++) {
+            visited[i][0] = true;
+        }
         while (!queue.isEmpty()){
             Node n = queue.poll();
             if(n.next == 1) {
