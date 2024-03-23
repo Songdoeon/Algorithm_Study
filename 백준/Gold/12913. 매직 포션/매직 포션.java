@@ -13,7 +13,7 @@ class Node{
 }
 public class Main {
     static int N, M;
-    static List<List<Node>> graph = new ArrayList<>();
+    static Node[][] graph;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -27,14 +27,11 @@ public class Main {
             Arrays.fill(costs[i], 10);
             costs[i][0] = 0;
         }
-        for (int i = 0; i < N; i++) {
-            graph.add(new ArrayList<>());
-        }
+        graph = new Node[N][N];
         for (int i = 0; i < N; i++) {
             char[] info = br.readLine().toCharArray();
             for (int j = 0; j < N; j++) {
-                if(i == j) continue;
-                graph.get(i).add(new Node(j, 0,info[j]-'0'));
+                graph[i][j] = new Node(j, 0,info[j] - '0');
             }
         }
 
@@ -50,7 +47,9 @@ public class Main {
             }
             if(visited[n.potion][n.next]) continue;
             visited[n.potion][n.next] = true;
-            for(Node nextNode : graph.get(n.next)) {
+            int size = graph[n.next].length;
+            for (int i = 0; i < size; i++) {
+                Node nextNode = graph[n.next][i];
                 if(costs[n.potion][nextNode.next] > costs[n.potion][n.next] + nextNode.cost) {
                     costs[n.potion][nextNode.next] = costs[n.potion][n.next] + nextNode.cost;
                     queue.add(new Node(nextNode.next, n.potion, costs[n.potion][nextNode.next]));
