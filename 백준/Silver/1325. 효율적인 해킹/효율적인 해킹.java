@@ -1,60 +1,69 @@
-import java.util.*;
-import java.io.*;
-
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
 public class Main {
-    static int N, M;
-    static int[] costs;
-    static List<Integer>[] list;
-    static boolean[] visited;
 
+   public static void main(String[] args) throws Exception {
+      BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+      StringBuilder sb = new StringBuilder();
+      StringTokenizer st = new StringTokenizer(br.readLine());
+      int N = Integer.parseInt(st.nextToken());
+      int M = Integer.parseInt(st.nextToken());
+      ArrayList<ArrayList<Integer>> graph = new ArrayList<ArrayList<Integer>>();
+      for (int i = 0; i <= N; i++)
+         graph.add(new ArrayList<Integer>());
+      for (int i = 0; i < M; i++) {
+         st = new StringTokenizer(br.readLine());
+         int A = Integer.parseInt(st.nextToken());
+         int B = Integer.parseInt(st.nextToken());
+         graph.get(B).add(A);
+      }
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        StringTokenizer st = new StringTokenizer(br.readLine());
+      int[] hacking = new int[N + 1];
+      int max = 0;
+      Queue<Integer> que = new ArrayDeque<Integer>();
+      boolean[][] visited = new boolean[N + 1][N + 1];
 
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
-        visited = new boolean[N + 1];
-        list = new List[N + 1];
-        costs = new int[N + 1];
-        Queue<Integer> queue = new ArrayDeque<>();
-        for (int i = 1; i <= N; i++) {
-            list[i] = new ArrayList<>();
-        }
-        for (int i = 0; i < M; i++) {
-            st = new StringTokenizer(br.readLine());
-            int n1 = Integer.parseInt(st.nextToken());
-            int n2 = Integer.parseInt(st.nextToken());
+      for (int i = 1; i <= N; i++) {
+         que.offer(i);
 
-            list[n2].add(n1);
-        }
-        int max = 0;
-        for (int i = 1; i <= N; i++) {
-            queue.offer(i);
-            visited = new boolean[N + 1];
-            visited[i] = true;
-            int cnt = 1;
-            while (!queue.isEmpty()){
-                int p = queue.poll();
+         while (!que.isEmpty()) {
+            int cur = que.poll();
+            if (visited[i][cur]) continue;
+            visited[i][cur] = true;
+            hacking[i]++;
 
-                for (int next : list[p]){
-                    if(visited[next]) continue;
-                    visited[next] = true;
-                    queue.offer(next);
-                    cnt++;
-                }
+            int size = graph.get(cur).size();
+            for (int j = 0; j < size; j++) {
+               if (visited[i][graph.get(cur).get(j)])
+                  continue;
+               if (graph.get(cur).get(j) < i) { 
+                  for (int k = 1; k <= N; k++) {
+                     if (visited[i][k])
+                        continue;
+                     if (visited[graph.get(cur).get(j)][k]) {
+                        visited[i][k] = true;
+                        hacking[i]++;
+                     }
+                  }
+               } else { 
+                  que.offer(graph.get(cur).get(j));
+               }
             }
-            costs[i] = cnt;
-            max = Math.max(max, cnt);
-        }
+         }
+         max = hacking[i] > max ? hacking[i] : max;
+      }
 
-        for (int i = 1; i <= N; i++) {
-            if(costs[i] == max){
-                sb.append(i).append(' ');
-            }
-        }
-        System.out.println(sb);
-    }
+      for (int i = 1; i <= N; i++) {
+         if (max == hacking[i])
+            sb.append(i).append(" ");
+      }
+      System.out.println(sb);
+   }
+
 }
