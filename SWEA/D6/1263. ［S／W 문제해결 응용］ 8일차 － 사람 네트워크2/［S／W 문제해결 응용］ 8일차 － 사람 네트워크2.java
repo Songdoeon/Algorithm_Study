@@ -34,7 +34,6 @@ public class Solution {
             for (int i = 0; i < N; i++) {
                 int sum = 0;
                 for (int j = 0; j < N; j++) {
-                    if(i == j) continue;
                     sum += arr[i][j];
                 }
                 result = Math.min(result, sum);
