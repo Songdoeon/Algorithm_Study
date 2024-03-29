@@ -6,15 +6,13 @@ public class Main {
     static String parent, pattern;
     static int len1, len2;
     static void makePi(String p){
-        int len = p.length();
+
         int idx = 0;
-        for (int i = 1; i < len; i++) {
+        for (int i = 1; i < len2; i++) {
             while (idx > 0 && p.charAt(i) != p.charAt(idx))
                 idx = pi[idx - 1];
-
             if(p.charAt(i) == p.charAt(idx))
                 pi[i] = ++idx;
-
         }
     }
     public static void main(String[] args) throws IOException {
@@ -41,7 +39,8 @@ public class Main {
                 }
                 else idx++;
         }
-        System.out.println(cnt);
-        System.out.println(sb);
+        StringBuilder ans = new StringBuilder();
+        ans.append(cnt).append('\n').append(sb);
+        System.out.println(ans);
     }
 }
