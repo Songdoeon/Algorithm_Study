@@ -1,12 +1,10 @@
 import java.io.*;
-import java.util.*;
 public class Main {
 
     static int[] pi;
     static String parent, pattern;
     static int len1, len2;
     static void makePi(String p){
-
         int idx = 0;
         for (int i = 1; i < len2; i++) {
             while (idx > 0 && p.charAt(i) != p.charAt(idx))
@@ -39,8 +37,6 @@ public class Main {
                 }
                 else idx++;
         }
-        StringBuilder ans = new StringBuilder();
-        ans.append(cnt).append('\n').append(sb);
-        System.out.println(ans);
+        System.out.println(cnt + "\n" + sb);
     }
 }
