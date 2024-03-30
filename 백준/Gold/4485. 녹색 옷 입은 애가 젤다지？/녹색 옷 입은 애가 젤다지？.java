@@ -14,7 +14,7 @@ class Node{
 }
 public class Main {
     static int[] dx = {1, 0 ,-1, 0};
-    static int[] dy = {0 ,-1, 0, 1};
+    static int[] dy = {0 ,1, 0, -1};
     static int T;
     static int[][] map;
     static boolean outOfMap(int x, int y){
@@ -24,7 +24,7 @@ public class Main {
         Queue<Node> q = new PriorityQueue<>(Comparator.comparingInt(o -> o.cost));
         int[][] move = new int[T][T];
         for(int i = 0; i < T; i++) {
-            Arrays.fill(move[i], Integer.MAX_VALUE);
+            Arrays.fill(move[i], 1200);
         }
 
         q.add(new Node(0, 0, map[0][0]));
