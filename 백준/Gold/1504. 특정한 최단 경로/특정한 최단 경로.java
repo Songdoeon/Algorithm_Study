@@ -14,13 +14,14 @@ class Node{
 public class Main {
 	static List<List<Node>> graph = new ArrayList<>();
 	static int[] costs;
-	static final int INF = 200_000_000;
-
+	static final int INF = 200000000;
+	static boolean[] visited;
 	static int search(int v1, int v2) {
 	
 		Queue<Node> queue = new PriorityQueue<>((o1, o2) -> o1.cost - o2.cost);
 		Arrays.fill(costs, INF);
-
+		Arrays.fill(visited, false);
+		
 		costs[v1] = 0;
 		
 		queue.add(new Node(v1, 0));
@@ -29,7 +30,8 @@ public class Main {
 			Node node = queue.poll();
 			int v = node.v;
 			int cost = node.cost;
-
+			if(visited[v]) continue;
+	        visited[v] = true;
 			for(Node nextNode : graph.get(v)) {
 				if(costs[nextNode.v] > nextNode.cost + cost) {
 					costs[nextNode.v] = nextNode.cost + cost;
@@ -46,9 +48,9 @@ public class Main {
 		
 		int N = Integer.parseInt(st.nextToken());
 		int E = Integer.parseInt(st.nextToken());
-
+		visited = new boolean[N + 1];
 		costs = new int[N + 1];
-		Arrays.fill(costs, INF);
+		Arrays.fill(costs, 200000000);
 		
         		 
 		for(int i = 0; i <= N; i++) {
@@ -77,7 +79,8 @@ public class Main {
 		int line2 = search(1,v2);
 		line2 += search(v2,v1);
 		line2 += search(v1,N);
-		System.out.println(Math.min(line1, line2) >= INF ? -1 : Math.min(line1,  line2));
+		int answer = Math.min(line1, line2) >= INF ? -1 : Math.min(line1,  line2);
+		System.out.println(answer);
 	}
 }
 
