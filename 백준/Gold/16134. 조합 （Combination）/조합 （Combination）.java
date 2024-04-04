@@ -3,7 +3,7 @@ import java.io.*;
 
 class Main {
     static int N, K;
-    static final int MOD = 1_234_567_891;
+    static final int MOD = 1_000_000_007;
     static long calc(long a){
         int k = MOD - 2;
         long ret = 1;
