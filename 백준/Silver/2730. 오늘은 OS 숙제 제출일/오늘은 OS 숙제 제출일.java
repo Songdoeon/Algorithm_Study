@@ -1,4 +1,3 @@
-
 import java.time.*;
 import java.util.*;
 import java.io.*;
@@ -29,9 +28,8 @@ class Main {
             d2 = LocalDate.of(Integer.parseInt(deadLine[2]), Integer.parseInt(submittedDay[0]), Integer.parseInt(submittedDay[1]));
             day += "/"+deadLine[2];
         }
-        LocalDateTime dt1 = d1.atStartOfDay();
-        LocalDateTime dt2 = d2.atStartOfDay();
-        return (int) Duration.between(dt1, dt2).toDays();
+
+        return Period.between(d1, d2).getDays();
     }
 
     public static void main(String[] args) throws Exception {
