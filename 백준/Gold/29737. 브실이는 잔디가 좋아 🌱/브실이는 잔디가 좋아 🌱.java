@@ -79,10 +79,6 @@ class Main {
                 }
             }
             String[] arg = temp.toString().split("X");
-//            for (String s : arg) {
-//                System.out.println("s = " + s);
-//            }
-//            System.out.println("---");
             int size = arg.length;
             int idx = 0;
             int start = 0;
@@ -97,7 +93,6 @@ class Main {
                     String tempS = arg[j];
                     while (tempS.startsWith("F")){
                         startF++;
-//                        System.out.println("startF = " + startF);
                         tempS = tempS.substring(1);
                     }
                     while (tempS.endsWith("F")){
