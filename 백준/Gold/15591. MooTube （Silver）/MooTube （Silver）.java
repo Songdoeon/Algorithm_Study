@@ -1,4 +1,3 @@
-
 import java.util.*;
 import java.io.*;
 
@@ -20,7 +19,6 @@ class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         StringBuilder sb = new StringBuilder();
-        PriorityQueue<Node> queue = new PriorityQueue<>( Comparator.comparingInt(o -> o.cost));
         Queue<Integer> q = new ArrayDeque<>();
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
