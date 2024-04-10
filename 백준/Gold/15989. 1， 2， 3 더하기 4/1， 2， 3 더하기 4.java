@@ -18,10 +18,7 @@ class Main {
         arr[6] = 7;
         int idx = 1;
         for (int i = 7; i <= 10_000; i++) {
-            if(i % 6 == 0) {
-                arr[i - 1]++;
-                idx++;
-            }
+            if(i % 6 == 5) idx++;
             arr[i] = arr[i - 1] + idx;
             if(i % 2 == 0 || i % 3 == 0)arr[i]++;
         }
