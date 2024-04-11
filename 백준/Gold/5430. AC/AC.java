@@ -1,3 +1,4 @@
+
 import java.util.*;
 import java.io.*;
 
@@ -16,7 +17,7 @@ class Main {
             boolean error = false;
             int len = Integer.parseInt(br.readLine());
             String str = br.readLine();
-            if(str.length() == 2 && exec.replaceAll("[R]","").length() > 0){
+            if(str.length() == 2 && exec.contains("D")){
                 sb.append("error").append('\n');
                 continue;
             }
@@ -27,7 +28,6 @@ class Main {
                 if(exec.charAt(j) == 'R') left = !left;
                 else {
                     if(deque.isEmpty()) {
-                        sb.append("error").append('\n');
                         error = true;
                         break;
                     }
@@ -35,17 +35,24 @@ class Main {
                     else deque.pollLast();
                 }
             }
-            if(error)continue;
+            if(error){
+                sb.append("error").append('\n');
+                continue;
+            }
             if(deque.isEmpty()) {
                 sb.append("[]").append('\n');
                 continue;
             }
             sb.append('[');
-            while (!deque.isEmpty()){
-                if(left){
+            if(left){
+                while (!deque.isEmpty()){
                     sb.append(deque.pollFirst()).append(',');
                 }
-                else sb.append(deque.pollLast()).append(',');
+            }
+            else{
+                while (!deque.isEmpty()){
+                    sb.append(deque.pollLast()).append(',');
+                }
             }
             sb = new StringBuilder(sb.substring(0, sb.length() - 1));
             sb.append(']').append('\n');
