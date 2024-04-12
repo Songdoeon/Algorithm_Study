@@ -48,6 +48,5 @@ class Main {
                 else queue.offerFirst(new Pos(nx, ny, p.broken));
             }
         }
-        System.out.println("??");
     }
 }
