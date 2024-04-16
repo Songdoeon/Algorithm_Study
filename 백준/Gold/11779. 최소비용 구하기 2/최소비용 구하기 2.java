@@ -52,20 +52,18 @@ class Main {
             Node n = queue.poll();
             if(n.no == end){
                 int cost = n.cost;
-                int cnt = 1;
                 int no = n.no;
-                sb.append(start).append(' ');
                 Deque<Integer> stack = new ArrayDeque<>();
                 while (no != start){
                     stack.push(no);
                     no = from[no];
-                    cnt++;
                 }
+                stack.push(start);
+                sb.append(cost).append('\n').append(stack.size()).append('\n');
                 while (!stack.isEmpty()){
                     sb.append(stack.pop()).append(' ');
                 }
-
-                System.out.println(cost + "\n" + cnt + "\n" +sb);
+                System.out.println(sb);
                 return ;
             }
             if(visited[n.no])continue;
@@ -81,5 +79,6 @@ class Main {
                 }
             }
         }
+
     }
 }
