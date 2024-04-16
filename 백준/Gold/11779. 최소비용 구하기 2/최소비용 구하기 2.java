@@ -50,9 +50,7 @@ class Main {
         dist[start] = 0;
         while (!queue.isEmpty()){
             Node n = queue.poll();
-//            System.out.println(n.no + " : " + n.cost);
             if(n.no == end){
-//                System.out.println("-----");
                 int cost = n.cost;
                 int cnt = 1;
                 int no = n.no;
@@ -83,7 +81,5 @@ class Main {
                 }
             }
         }
-
-        System.out.println();
     }
 }
