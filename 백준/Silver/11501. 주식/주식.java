@@ -11,16 +11,22 @@ class Main {
         Deque<Integer> stack;
         while (T-- > 0){
             N = Integer.parseInt(br.readLine());
-            stack = new ArrayDeque<>();
             st = new StringTokenizer(br.readLine());
+            int[] arr = new int[N];
             long sum = 0;
             for (int i = 0; i < N; i++) {
-                int n = Integer.parseInt(st.nextToken());
-                stack.push(n);
+                arr[i] = Integer.parseInt(st.nextToken());
             }
-            while (!stack.isEmpty()){
-                int n = stack.pop();
-                while (!stack.isEmpty() && stack.peek() < n) sum += n - stack.pop();
+            N--;
+            while (N > 0){
+                int n = arr[N];
+                if(arr[N - 1] >= n){
+                    N--;
+                    continue;
+                }
+                while (N > 0 && arr[N - 1] < n) {
+                    sum += n - arr[N-- - 1];
+                }
             }
             sb.append(sum).append('\n');
         }
