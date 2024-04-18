@@ -19,7 +19,7 @@ public class Main{
         int start = 0;
         int end = N - 1;
         while (start < end){
-            long sum = arr[start] + arr[end];
+            int sum = arr[start] + arr[end];
             if(sum == 0) {
                 ldx = start;
                 rdx = end;
