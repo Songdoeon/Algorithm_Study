@@ -62,9 +62,7 @@ class Main{
                 cntArr[DNA.charAt(j - n) - 'A']--;
                 add();
             }
-            List<Integer> list = new ArrayList<>(map.values());
-            list.sort((o1, o2) -> o2 - o1);
-            sb.append(list.get(0)).append('\n');
+            sb.append(map.values().stream().max(Comparator.comparingInt(o -> o)).get()).append('\n');
         }
         System.out.println(sb);
     }
