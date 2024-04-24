@@ -1,41 +1,72 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringTokenizer;
 
-class Main{
-    static int N;
-    static int[] cntArr;
-    static Map<Long, Integer> map;
-    static void add(){
-//        String s = cntArr[0]+ "." + cntArr[6]+ "." + cntArr[19] + "." + cntArr[2];
-        long result = cntArr[0];
-        result = 601 * result + cntArr[6];
-        result = 601 * result + cntArr[19];
-        result = 601 * result + cntArr[2];
-        map.put(result, map.getOrDefault(result, 0) + 1);
-    }
+public class Main {
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static StringBuilder sb = new StringBuilder();
+    static StringTokenizer st;
+
+    static int T, K, N, a, g, c, t, ans;
+    static Map<Long, Integer> dna;
+    static String str;
+    static final long H = 601;
+
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
-        for (int i = 0; i < N; i++) {
-            cntArr = new int[26];
-            map = new HashMap<>();
+        T = Integer.parseInt(br.readLine());
+        while (T-- > 0) {
             st = new StringTokenizer(br.readLine());
-            int n = Integer.parseInt(st.nextToken());
-            String DNA = st.nextToken();
-            int len = DNA.length();
-            for (int j = 0; j < n; j++) {
-                cntArr[DNA.charAt(j) - 'A']++;
-            }
-            add();
-            for (int j = n; j < len; j++) {
-                cntArr[DNA.charAt(j) - 'A']++;
-                cntArr[DNA.charAt(j - n) - 'A']--;
-                add();
-            }
-            sb.append(map.values().stream().max(Comparator.comparingInt(o -> o)).get()).append('\n');
+            K = Integer.parseInt(st.nextToken());
+            str = st.nextToken();
+            sb.append(solution()).append("\n");
+            System.gc();
         }
-        System.out.println(sb);
+        System.out.print(sb);
+    }
+
+    public static int solution() {
+        ans = 0;
+        N = str.length() - K;
+        dna = new HashMap<>();
+        
+        a = 0;
+        g = 0;
+        c = 0;
+        t = 0;
+
+        for (int i = 0; i < K; i++) add(str.charAt(i));
+        set();
+        
+        for (int i = 0; i < N; i++) {
+            sub(str.charAt(i));
+            add(str.charAt(i + K));
+            set();
+        }
+        return ans;
+    }
+
+    static void add(char ch) {
+        if (ch == 'A') a++;
+        else if (ch == 'G') g++;
+        else if (ch == 'C') c++;
+        else if (ch == 'T') t++;
+    }
+
+    static void sub(char ch) {
+        if (ch == 'A') a--;
+        else if (ch == 'G') g--;
+        else if (ch == 'C') c--;
+        else if (ch == 'T') t--;
+    }
+
+    static void set() {
+        long hash = (H * H * H * a) + (H * H * g) + (H * c) + t;
+        if (!dna.containsKey(hash)) dna.put(hash, 0);
+        int v = dna.get(hash) + 1;
+        ans = Math.max(ans, v);
+        dna.put(hash, v);
     }
 }
