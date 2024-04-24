@@ -1,45 +1,17 @@
 import java.io.*;
 import java.util.*;
 
-class MCS{
-    int A, G, T, C;
-
-    public MCS(int a, int g, int t, int c) {
-        A = a;
-        G = g;
-        T = t;
-        C = c;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        MCS mcs = (MCS) o;
-
-        if (A != mcs.A) return false;
-        if (G != mcs.G) return false;
-        if (T != mcs.T) return false;
-        return C == mcs.C;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = A;
-        result = 31 * result + G;
-        result = 31 * result + T;
-        result = 31 * result + C;
-        return result;
-    }
-}
 class Main{
     static int N;
     static int[] cntArr;
-    static Map<MCS, Integer> map;
+    static Map<Long, Integer> map;
     static void add(){
-        MCS mcs = new MCS(cntArr[0], cntArr[6], cntArr[19], cntArr[2]);
-        map.put(mcs, map.getOrDefault(mcs, 0) + 1);
+//        String s = cntArr[0]+ "." + cntArr[6]+ "." + cntArr[19] + "." + cntArr[2];
+        long result = cntArr[0];
+        result = 601 * result + cntArr[6];
+        result = 601 * result + cntArr[19];
+        result = 601 * result + cntArr[2];
+        map.put(result, map.getOrDefault(result, 0) + 1);
     }
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
