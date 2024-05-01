@@ -28,18 +28,17 @@ public class Main {
         K = Integer.parseInt(st.nextToken());
         parent = new int[M];
         myCards = new int[M];
-
+        boolean[] isExist = new boolean[N + 1];
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < M; i++) {
-            int n = Integer.parseInt(st.nextToken());
             parent[i] = i;
-            myCards[i] = n;
-//            myCards.add(n);
+            isExist[Integer.parseInt(st.nextToken())] = true;
         }
-//        Collections.sort(myCards);
-        Arrays.sort(myCards);
+        int idx = 0;
         st = new StringTokenizer(br.readLine());
-
+        for (int i = 1; i <= N; i++) {
+            if(isExist[i]) myCards[idx++] = i;
+        }
         for (int i = 0; i < K; i++) {
             int n = Integer.parseInt(st.nextToken());
 
