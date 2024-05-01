@@ -4,20 +4,20 @@ import java.io.*;
 public class Main {
     static int N, M, K;
     static int max, min;
-//    static List<Integer> myCards = new ArrayList<>();
+
     static int[] myCards;
     static int[] parent;
     static int find(int n){
         if(n == parent[n])return n;
         return parent[n] = find(parent[n]);
     }
-    static boolean union(int n1, int n2){
+    static void union(int n1, int n2){
         int p1 = find(n1);
         int p2 = find(n2);
-        if(n1 == n2) return false;
+
         if(p1 > p2) parent[p2] = p1;
         else parent[p1] = p2;
-        return true;
+
     }
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -47,15 +47,16 @@ public class Main {
             int mid;
             while (start < end){
                 mid = (start + end) / 2;
-
                 if(myCards[mid] <= n){
                     start = mid + 1;
                 }
                 else end = mid;
             }
+            
             if(end != M - 1){
                 union(end, parent[end]);
             }
+            
             sb.append(myCards[parent[end]++]).append('\n');
         }
         System.out.println(sb);
