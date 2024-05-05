@@ -19,10 +19,9 @@ class Main {
         Arrays.sort(arr, Collections.reverseOrder());
 
         for (int i = 0; i < N; i++) {
-            int n1 = arr[i];
             for (int j = i + 1; j < N; j++) {
-                if(set.contains(n1 - arr[j])){
-                    System.out.println(n1);
+                if(set.contains(arr[i] - arr[j])){
+                    System.out.println(arr[i]);
                     return ;
                 }
             }
