@@ -9,12 +9,6 @@ class Node{
         this.no = no;
         this.cnt = cnt;
     }
-//    @Override
-//    public String toString() {
-//        return
-//                "{idx=" + idx +
-//                ", cnt=" + cnt + "}";
-//    }
 }
 public class Main{
     static int N;
