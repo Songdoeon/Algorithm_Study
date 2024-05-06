@@ -17,8 +17,7 @@ class Main {
             map.put(st.nextToken(), st.nextToken());
         }
         for (int i = 0; i < M; i++) {
-            st = new StringTokenizer(br.readLine());
-            sb.append(map.get(st.nextToken())).append('\n');
+            sb.append(map.get(br.readLine())).append('\n');
         }
         System.out.println(sb);
     }
