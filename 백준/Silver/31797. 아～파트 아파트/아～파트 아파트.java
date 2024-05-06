@@ -9,17 +9,25 @@ class Main{
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         int[] arr = new int[10_001];
-        List<Integer> list = new ArrayList<>();
+        boolean[] isExist = new boolean[10_001];
         for (int i = 1; i <= M; i++) {
             st = new StringTokenizer(br.readLine());
             int floor1 = Integer.parseInt(st.nextToken());
             int floor2 = Integer.parseInt(st.nextToken());
+            isExist[floor1] = true;
+            isExist[floor2] = true;
             arr[floor1] = arr[floor2] = i;
-            list.add(floor1);
-            list.add(floor2);
+
         }
-        Collections.sort(list);
         int f = N % (2 * M);
-        System.out.println(f == 0 ? arr[list.get(2 * M - 1)] : arr[list.get(f - 1)]);
+        if(f == 0) f = 2 * M;
+        int ans = 0;
+        int idx = 1;
+        while (ans != f){
+            if(isExist[idx++]){
+                ans++;
+            }
+        }
+        System.out.println(arr[idx - 1]);
     }
 }
