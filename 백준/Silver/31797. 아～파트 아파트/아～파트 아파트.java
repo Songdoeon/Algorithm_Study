@@ -14,8 +14,7 @@ class Main{
             st = new StringTokenizer(br.readLine());
             int floor1 = Integer.parseInt(st.nextToken());
             int floor2 = Integer.parseInt(st.nextToken());
-            isExist[floor1] = true;
-            isExist[floor2] = true;
+            isExist[floor1] = isExist[floor2] = true;
             arr[floor1] = arr[floor2] = i;
 
         }
@@ -24,9 +23,7 @@ class Main{
         int ans = 0;
         int idx = 1;
         while (ans != f){
-            if(isExist[idx++]){
-                ans++;
-            }
+            if(isExist[idx++]) ans++;
         }
         System.out.println(arr[idx - 1]);
     }
