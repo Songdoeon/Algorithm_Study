@@ -17,7 +17,6 @@ public class Main {
 	static final int INF = 200000000;
 	static boolean[] visited;
 	static int search(int v1, int v2) {
-	
 		Queue<Node> queue = new PriorityQueue<>((o1, o2) -> o1.cost - o2.cost);
 		Arrays.fill(costs, INF);
 		Arrays.fill(visited, false);
@@ -31,6 +30,7 @@ public class Main {
 			int v = node.v;
 			int cost = node.cost;
 			if(visited[v]) continue;
+            if(v == v2)break;
 	        visited[v] = true;
 			for(Node nextNode : graph.get(v)) {
 				if(costs[nextNode.v] > nextNode.cost + cost) {
