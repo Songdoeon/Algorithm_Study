@@ -1,43 +1,22 @@
-import java.util.*;
 import java.io.*;
 
-class Pos{
-    int x, y;
-
-    public Pos(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Pos pos = (Pos) o;
-
-        if (x != pos.x) return false;
-        return y == pos.y;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = x;
-        result = 31 * result + y;
-        return result;
-    }
-}
 public class Main {
-    static int N;
-    public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        N = Integer.parseInt(br.readLine());
-        int len;
-        while (N-- > 0){
-            len = br.readLine().length();
-            sb.append(len >= 6 && len <= 9 ? "yes\n" : "no\n");
-        }
-        System.out.println(sb);
-    }
+
+	static BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+	static StringBuilder sb = new StringBuilder();
+
+	static int N;
+	static int input;
+	
+	public static void main(String[] args) throws IOException {
+		N = Integer.parseInt(bf.readLine());
+		
+		for(int i = 0; i < N; i++) {
+			input = bf.readLine().length();
+			
+			sb.append(6 <= input && input <= 9 ? "yes\n" : "no\n");
+		}
+		
+		System.out.print(sb);
+	}
 }
