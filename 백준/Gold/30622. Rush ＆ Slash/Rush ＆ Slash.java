@@ -33,7 +33,7 @@ public class Main {
     static Pos[] list;
     static int[] dx = {-1, 0, 1, 0, 1, 1, -1, -1};
     static int[] dy = {0, 1, 0, -1, 1, -1, -1, 1};
-    static Map<Pos, Integer> map = new HashMap<>();
+    
     static int getDis(Pos p) {
         return Math.abs(p.x) + Math.abs(p.y);
     }
@@ -53,7 +53,7 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         list = new Pos[N];
         parent = new int[N];
-
+        Map<Pos, Integer> map = new HashMap<>(2 * N);
         long max = 0;
         long ans = 0;
         Pos temp;
