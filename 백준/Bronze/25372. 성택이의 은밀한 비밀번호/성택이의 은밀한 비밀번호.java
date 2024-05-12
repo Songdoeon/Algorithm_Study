@@ -36,10 +36,8 @@ public class Main {
         int len;
         while (N-- > 0){
             len = br.readLine().length();
-            if(len >= 6 && len <= 9)sb.append("yes").append('\n');
-            else sb.append("no").append('\n');
+            sb.append(len >= 6 && len <= 9 ? "yes\n" : "no\n");
         }
-
         System.out.println(sb);
     }
 }
