@@ -34,10 +34,7 @@ public class Main {
         for (int i = 0; i < M; i++) {
             num = Integer.parseInt(br.readLine());
             n = Arrays.binarySearch(arr, num);
-            if(n < 0){
-                sb.append(names[Math.abs(n + 1)]).append('\n');
-            }
-            else sb.append(names[n]).append('\n');
+            sb.append(n < 0 ? names[Math.abs(n + 1)] : names[n]).append('\n');
         }
 
         System.out.println(sb);
