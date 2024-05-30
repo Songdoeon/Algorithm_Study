@@ -4,7 +4,7 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         String word = br.readLine();
         int len = word.length();
         String[] words = new String[len];
@@ -13,8 +13,9 @@ public class Main {
         }
         Arrays.sort(words);
         for (int i = 0; i < len; i++) {
-            sb.append(words[i]).append('\n');
+            bw.write(words[i]);
+            bw.write('\n');
         }
-        System.out.println(sb);
+        bw.flush();
     }
 }
