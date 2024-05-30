@@ -9,7 +9,7 @@ public class Main {
         int len = word.length();
         String[] words = new String[len];
         for (int i = 0; i < len; i++) {
-            words[i] = word.substring(i,len);
+            words[i] = word.substring(i);
         }
         Arrays.sort(words);
         for (int i = 0; i < len; i++) {
