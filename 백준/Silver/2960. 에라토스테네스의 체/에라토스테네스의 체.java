@@ -8,13 +8,12 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
-        int[] arr = new int[n + 1];
-        Arrays.fill(arr, 2);
+        BitSet set = new BitSet(n);
         for (int i = 2; i <= n; i++) {
-            if (arr[i] == 0) continue;
+            if(set.get(i)) continue;
             for (int j = i; j <= n; j += i) {
-                if(arr[j] == 0) continue;
-                arr[j] = 0;
+                if(set.get(j)) continue;
+                set.set(j);
                 if (--m == 0) {
                     System.out.print(j);
                     return;
