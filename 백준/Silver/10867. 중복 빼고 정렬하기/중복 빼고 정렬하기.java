@@ -4,18 +4,26 @@ import java.io.*;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-        int N = Integer.parseInt(br.readLine());
-
+        int N = read();
         BitSet bitSet = new BitSet(2_001);
-        StringTokenizer st = new StringTokenizer(br.readLine());
         while (N-- > 0) {
-            bitSet.set(Integer.parseInt(st.nextToken()) + 1000);
+            bitSet.set(read() + 1000);
         }
         for (int i = 0; i < 2001; i++) {
             if (bitSet.get(i)) sb.append(i - 1000).append(' ');
         }
         System.out.println(sb);
+    }
+    private static int read() throws Exception {
+        int c, n = System.in.read() & 15;
+        boolean negative = n == 13;
+        if (negative)
+            n = System.in.read() & 15;
+        while ((c = System.in.read()) >= 48)
+            n = (n << 3) + (n << 1) + (c & 15);
+        if (c == 13)
+            System.in.read();
+        return negative ? ~n + 1 : n;
     }
 }
