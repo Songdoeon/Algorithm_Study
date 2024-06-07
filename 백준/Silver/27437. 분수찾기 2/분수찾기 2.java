@@ -31,7 +31,6 @@ public class Main{
         long diff = endNum - N;
         long first = 1 + diff;
         long second = mid - diff;
-        if(mid % 2 == 1) System.out.println(first +"/"+second);
-        else System.out.println(second +"/"+first);
+        System.out.println(mid % 2 == 1 ? first +"/"+second : second +"/"+first);
     }
 }
