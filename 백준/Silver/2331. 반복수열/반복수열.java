@@ -13,7 +13,7 @@ public class Main {
         int cnt = 1;
         while (arr[num] == 0) {
             arr[num] = cnt++;
-            String s = num + "";
+            String s = String.valueOf(num);
             num = 0;
             int len = s.length();
             for (int i = 0; i < len; i++) {
