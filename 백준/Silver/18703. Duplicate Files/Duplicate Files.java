@@ -4,33 +4,38 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class Main {
-    static int[] arr;
-
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
-        StringBuilder sb = new StringBuilder();
-        int T = Integer.parseInt(br.readLine());
-        Map<String, Integer> map;
-        List<Integer> list;
-        int max = Integer.MAX_VALUE;
-        while (T-- > 0){
-            int N = Integer.parseInt(br.readLine());
-            map = new HashMap<>(N * 2);
-            for (int i = 0; i < N; i++) {
-                st = new StringTokenizer(br.readLine());
-                String str = st.nextToken();
-                int n = Integer.parseInt(st.nextToken());
-                if(map.getOrDefault(str, max) > n) map.put(str, n);
-            }
-            list = new ArrayList<>(map.values());
-            Collections.sort(list);
-            int size = list.size();
-            for (int i = 0; i < size; i++) {
-                sb.append(list.get(i)).append(' ');
-            }
-            sb.append('\n');
-        }
-        System.out.println(sb);
-    }
+	
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		StringTokenizer st;
+		HashMap<String, Integer> map = new HashMap<>();
+		ArrayList<Integer> list = new ArrayList<>();
+		int t = Integer.parseInt(br.readLine());
+		while(t-->0) {
+			int N = Integer.parseInt(br.readLine());
+			int num = 0;
+			while(N-->0) {
+				st = new StringTokenizer(br.readLine());
+				String s = st.nextToken();
+				int id = Integer.parseInt(st.nextToken());
+				int idx = num;
+				if(map.containsKey(s)) {
+					idx = map.get(s);
+					if(list.get(idx)>id) list.set(idx, id);
+				}
+				else {
+					map.put(s, idx);
+					list.add(id);
+					num++;
+				}
+			}
+			Collections.sort(list);
+			for(int m : list) sb.append(m).append(" ");
+			sb.append("\n");
+			map.clear();
+			list.clear();
+		}
+		System.out.print(sb);
+	}
 }
