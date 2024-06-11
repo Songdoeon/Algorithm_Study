@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int[] arr = new int[500_000];
+        int[] arr = new int[300_000];
         int num = Integer.parseInt(st.nextToken());
         int pow = Integer.parseInt(st.nextToken());
         int cnt = 1;
