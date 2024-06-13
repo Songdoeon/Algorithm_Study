@@ -10,19 +10,20 @@ class Main {
         char[] arr = br.readLine().toCharArray();
         int n = arr.length;
         int idx = 0;
-        int num = 0;
+        int num = 1;
         String s;
-        while (idx < n) {
-            s = String.valueOf(++num);
+        while (true) {
+            s = String.valueOf(num);
             int len = s.length();
             for (int i = 0; i < len; i++) {
-                if(idx == n) break;
-                char c = s.charAt(i);
-                if (c == arr[idx]) {
-                    idx++;
+                if (s.charAt(i) == arr[idx]) idx++;
+                if(idx == n) {            
+                    System.out.println(num);
+                    return ;
                 }
             }
+            num++;
         }
-        System.out.println(num);
+
     }
 }
