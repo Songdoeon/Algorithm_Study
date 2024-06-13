@@ -16,10 +16,11 @@ class Main {
             s = String.valueOf(num);
             int len = s.length();
             for (int i = 0; i < len; i++) {
-                if (s.charAt(i) == arr[idx]) idx++;
-                if(idx == n) {            
-                    System.out.println(num);
-                    return ;
+                if (s.charAt(i) == arr[idx]) {
+                    if(++idx == n) {            
+                        System.out.println(num);
+                        return ;
+                    }
                 }
             }
             num++;
