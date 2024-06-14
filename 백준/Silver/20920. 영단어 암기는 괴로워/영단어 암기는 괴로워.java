@@ -1,37 +1,61 @@
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringTokenizer;
+import java.util.TreeSet;
+
+class Word implements Comparable<Word> {
+    final String value;
+    final int freq;
+    final int len;
+
+    public Word(String value, int freq) {
+        this.value = value;
+        this.freq = freq;
+        len = value.length();
+    }
+
+    @Override
+    public int compareTo(Word w) {
+        if (this.freq == w.freq) {
+            if (this.len == w.len) {
+                return this.value.compareTo(w.value);
+            } else {
+                return w.len - this.len;
+            }
+        } else {
+            return w.freq - this.freq;
+        }
+    }
+}
 
 public class Main {
-    static int N, M;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
         StringBuilder sb = new StringBuilder();
-        Map<String, Integer> map = new HashMap<>();
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
-        String word;
-        List<String> list = new ArrayList<>();
-        while(N-- > 0){
-            word = br.readLine();
-            if(word.length() < M) continue;
-            if(map.containsKey(word)){
-                map.put(word, map.get(word) + 1);
-            }
-            else {
-                map.put(word, 1);
-                list.add(word);
-            }
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int numOfWords = Integer.parseInt(st.nextToken());
+        int minLen = Integer.parseInt(st.nextToken());
+
+        HashMap<String, Integer> words = new HashMap<>();
+        while (numOfWords-- > 0) {
+            String word = br.readLine();
+            if (word.length() < minLen) continue;
+            words.put(word, words.getOrDefault(word, 0) + 1);
         }
 
-        list.sort((o1, o2) -> map.get(o1) == map.get(o2) ?
-                                o1.length() == o2.length() ?
-                                o1.compareTo(o2) :
-                                o2.length() - o1.length():
-                                map.get(o2) - map.get(o1));
-        for (String s : list) {
-            sb.append(s).append('\n');
+        TreeSet<Word> wordList = new TreeSet<>();
+        for (Map.Entry<String, Integer> word : words.entrySet()) {
+            wordList.add(new Word(word.getKey(), word.getValue()));
         }
+
+        for (Word word : wordList) {
+            sb.append(word.value).append('\n');
+        }
+
         System.out.println(sb);
     }
 }
