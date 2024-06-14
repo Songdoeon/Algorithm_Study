@@ -11,12 +11,19 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         String word;
+        List<String> list = new ArrayList<>();
         while(N-- > 0){
             word = br.readLine();
             if(word.length() < M) continue;
-            map.put(word, map.getOrDefault(word, 0) + 1);
+            if(map.containsKey(word)){
+                map.put(word, map.get(word) + 1);
+            }
+            else {
+                map.put(word, 1);
+                list.add(word);
+            }
         }
-        List<String> list = new ArrayList<>(map.keySet());
+
         list.sort((o1, o2) -> map.get(o1) == map.get(o2) ?
                                 o1.length() == o2.length() ?
                                 o1.compareTo(o2) :
