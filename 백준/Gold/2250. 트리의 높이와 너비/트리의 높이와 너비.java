@@ -22,8 +22,6 @@ class Main {
     static Node[] nodes;
     static void search(Node node, int dep){
         if(node.no == -1) return ;
-        depth = Math.max(dep, depth);
-
         if(node.left != -1) search(nodes[node.left], dep + 1);
         width[dep][0] = Math.min(width[dep][0], idx);
         width[dep][1] = Math.max(width[dep][1], idx);
@@ -60,7 +58,7 @@ class Main {
         search(root, 0);
         int ans = 0;
         int ans1 = 0;
-        for (int i = 0; i <= depth; i++) {
+        for (int i = 0; i < N; i++) {
             int wid = width[i][1] - width[i][0];
             if(ans1 < wid){
                 ans = i;
