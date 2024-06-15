@@ -15,13 +15,10 @@ class Node{
 class Main {
     static int N;
     static Node root;
-    static int depth;
-    static int[][] arr;
     static int idx;
     static int[][] width;
     static Node[] nodes;
     static void search(Node node, int dep){
-        if(node.no == -1) return ;
         if(node.left != -1) search(nodes[node.left], dep + 1);
         width[dep][0] = Math.min(width[dep][0], idx);
         width[dep][1] = Math.max(width[dep][1], idx);
@@ -34,7 +31,6 @@ class Main {
         N = Integer.parseInt(br.readLine());
         int[] candidate = new int[N + 1];
         nodes = new Node[N + 1];
-        depth = 0;
         idx = 0;
         for (int i = 1; i <= N; i++) {
             st = new StringTokenizer(br.readLine());
