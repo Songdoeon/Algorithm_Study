@@ -19,24 +19,23 @@ class Main {
     static int[][] arr;
     static int idx;
     static int[][] width;
-    static Map<Integer, Node> map = new HashMap<>();
-
+    static Node[] nodes;
     static void search(Node node, int dep){
         if(node.no == -1) return ;
         depth = Math.max(dep, depth);
 
-        if(map.containsKey(node.left)) search(map.get(node.left), dep + 1);
-        width[dep][0] = Math.min(width[dep][0], idx); 
+        if(node.left != -1) search(nodes[node.left], dep + 1);
+        width[dep][0] = Math.min(width[dep][0], idx);
         width[dep][1] = Math.max(width[dep][1], idx);
-//        arr[dep][idx++] = node.no;
         idx++;
-        if(map.containsKey(node.right)) search(map.get(node.right), dep + 1);
+        if(node.right != -1) search(nodes[node.right], dep + 1);
     }
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
         N = Integer.parseInt(br.readLine());
         int[] candidate = new int[N + 1];
+        nodes = new Node[N + 1];
         depth = 0;
         idx = 0;
         for (int i = 1; i <= N; i++) {
@@ -46,12 +45,11 @@ class Main {
             int right = Integer.parseInt(st.nextToken());
             if(left != -1)candidate[left]++;
             if(right != -1)candidate[right]++;
-            map.put(parent, new Node(parent, left, right));
-
+            nodes[parent] = new Node(parent, left, right);
         }
         for (int i = 1; i <= N; i++) {
             if(candidate[i] == 0) {
-                root = map.get(i);
+                root = nodes[i];
                 break;
             }
         }
@@ -69,7 +67,6 @@ class Main {
                 ans1 = wid;
             }
         }
-
         System.out.println(ans + 1 + " " + (ans1 + 1));
     }
 }
