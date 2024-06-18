@@ -7,7 +7,7 @@ class Main {
     static int INF = 10_000_001;
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st;
         T = Integer.parseInt(br.readLine());
         for (int i = 1; i <= T; i++) {
@@ -22,10 +22,10 @@ class Main {
             for (int j = 2; j < N; j++) {
                 gap = Math.max(gap, arr[j] - arr[j - 1]);
             }
-            sb.append("Class").append(' ').append(i).append('\n');
-            sb.append("Max").append(' ').append(arr[N - 1]).append(", Min ").append(arr[0]);
-            sb.append(", Largest gap ").append(gap).append('\n');
+            bw.write("Class " + i + "\n");
+            bw.write("Max " + arr[N - 1] + ", Min " + arr[0]);
+            bw.write(", Largest gap " + gap + "\n");
         }
-        System.out.println(sb);
+        bw.flush();
     }
 }
