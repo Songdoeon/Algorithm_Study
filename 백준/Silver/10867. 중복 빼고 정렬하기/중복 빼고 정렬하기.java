@@ -6,12 +6,12 @@ public class Main {
     public static void main(String[] args) throws Exception {
         StringBuilder sb = new StringBuilder();
         int N = read();
-        BitSet bitSet = new BitSet(2_001);
+        boolean[] arr = new boolean[2_001];
         while (N-- > 0) {
-            bitSet.set(read() + 1000);
+            arr[read() + 1000] = true;
         }
         for (int i = 0; i < 2001; i++) {
-            if (bitSet.get(i)) sb.append(i - 1000).append(' ');
+            if (arr[i]) sb.append(i - 1000).append(' ');
         }
         System.out.println(sb);
     }
