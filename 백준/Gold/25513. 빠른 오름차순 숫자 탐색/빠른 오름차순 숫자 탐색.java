@@ -40,9 +40,8 @@ class Main {
                 for (int i = 0; i < 4; i++) {
                     int x = p.x + dx[i];
                     int y = p.y + dy[i];
-                    if(outOfMap(x, y)) continue;
-                    if(visited[x][y][p.find])continue;
-                    if(map[x][y] == -1) continue;
+                    if(outOfMap(x, y) || visited[x][y][p.find] 
+                            || map[x][y] == -1) continue;
                     if(p.find == 6 && map[x][y] == 6) {
                         System.out.println(ans);
                         return ;
