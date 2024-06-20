@@ -11,8 +11,8 @@ class Pos{
     }
 }
 class Main {
-    static int[] dx = {1, 0, -1, 0};
-    static int[] dy = {0, 1, 0, -1};
+    static int[] dx = {1, 0, 0, -1};
+    static int[] dy = {0, 1, -1, 0};
     static boolean[][][] visited = new boolean[5][5][7];
     static boolean outOfMap(int x, int y){
         return x < 0 || x >= 5 || y < 0 || y >= 5;
