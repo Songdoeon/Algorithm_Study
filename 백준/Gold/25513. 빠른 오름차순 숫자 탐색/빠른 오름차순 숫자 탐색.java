@@ -13,7 +13,7 @@ class Pos{
 class Main {
     static int[] dx = {1, 0, -1, 0};
     static int[] dy = {0, 1, 0, -1};
-    static boolean[][][] visited = new boolean[5][5][6];
+    static boolean[][][] visited = new boolean[5][5][7];
     static boolean outOfMap(int x, int y){
         return x < 0 || x >= 5 || y < 0 || y >= 5;
     }
@@ -41,18 +41,18 @@ class Main {
                     int x = p.x + dx[i];
                     int y = p.y + dy[i];
                     if(outOfMap(x, y)) continue;
-                    if(visited[x][y][p.find - 1])continue;
+                    if(visited[x][y][p.find])continue;
                     if(map[x][y] == -1) continue;
                     if(p.find == 6 && map[x][y] == 6) {
                         System.out.println(ans);
                         return ;
                     }
                     if(map[x][y] == p.find){
-                        visited[x][y][p.find] = true;
+                        visited[x][y][p.find + 1] = true;
                         queue.add(new Pos(x, y, p.find + 1));
                     }
                     else{
-                        visited[x][y][p.find - 1] = true;
+                        visited[x][y][p.find] = true;
                         queue.add(new Pos(x, y, p.find));
                     }
                 }
