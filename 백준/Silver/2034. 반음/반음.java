@@ -5,7 +5,7 @@ class Main {
     static int N;
     static int[] arr;
     static int[] starts = {0, 2, 3, 5 ,7, 8, 10};
-    static char[] chars = {'A', 'X', 'B', 'C', 'X', 'D', 'X', 'E', 'F', 'X', 'G', 'X',};
+    static char[] chars = {'A', 'X', 'B', 'C', 'X', 'D', 'X', 'E', 'F', 'X', 'G', 'X'};
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -20,7 +20,7 @@ class Main {
             int idx = starts[i];
             flag = false;
             for (int j = 0; j < N; j++) {
-                if(chars[idx] =='X'){
+                if(chars[idx] == 'X'){
                     flag = true;
                     break;
                 }
