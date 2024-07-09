@@ -44,7 +44,6 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         N = Integer.parseInt(br.readLine());
-        Queue<Pos> queue = new ArrayDeque<>();
         map = new char[N][N];
         for (int i = 0; i < N; i++) {
             map[i] = br.readLine().toCharArray();
