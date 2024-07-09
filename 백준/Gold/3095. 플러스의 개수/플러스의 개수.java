@@ -21,34 +21,24 @@ public class Main {
         return x < 0 || y < 0 || x >= N || y >= N;
     }
 
-    static boolean search(int x, int y, int dis){
+    static void search(int x, int y, int dis){
         int sX = x - dis;
         int sY = y - dis;
         int eX = x + dis;
         int eY = y + dis;
 
-        if(outOfMap(sX, sY)) return false;
-        if(outOfMap(eX, eY)) return false;
+        if(outOfMap(sX, sY)) return ;
+        if(outOfMap(eX, eY)) return ;
         for (int i = sX; i <= eX; i++) {
-            if((i != x && map[i][sY] == '0') || (i == x && map[x][sY] == '1')) continue;
-            return false;
-        }
-        for (int i = sX; i <= eX; i++) {
-            if((i != x && map[i][eY] == '0') || (i == x && map[x][eY] == '1')) continue;
-            return false;
-        }
-        sY++;
-        eY--;
-        for (int i = sY; i <= eY; i++) {
-            if((i != y && map[sX][i] == '0') || (i == y && map[sX][y] == '1')) continue;
-            return false;
+            if((i == x && map[i][sY] == '0') || (i != x && map[i][sY] == '1')) return ;
+            if((i == x && map[i][eY] == '0') || (i != x && map[i][eY] == '1')) return ;
         }
         for (int i = sY; i <= eY; i++) {
-            if((i != y && map[eX][i] == '0') || (i == y && map[eX][y] == '1')) continue;
-            return false;
+            if((i == y && map[sX][i] == '0') || (i != y && map[sX][i] == '1')) return ;
+            if((i == y && map[eX][i] == '0') || (i != y && map[eX][i] == '1')) return ;
         }
         ans++;
-        return true;
+        search(x, y, dis + 1);
     }
 
     public static void main(String[] args) throws IOException {
@@ -62,16 +52,9 @@ public class Main {
         for (int i = 1; i < N - 1; i++) {
             for (int j = 1; j < N - 1; j++) {
                 if(map[i][j] == '1') {
-                    if(search(i, j, 1)){
-                        queue.offer(new Pos(i, j, 2));
-                    }
+                    search(i, j, 1);
+
                 }
-            }
-        }
-        while (!queue.isEmpty()) {
-            Pos p = queue.poll();
-            if(search(p.x, p.y, p.d)){
-                queue.offer(new Pos(p.x, p.y, p.d + 1));
             }
         }
         System.out.println(ans);
