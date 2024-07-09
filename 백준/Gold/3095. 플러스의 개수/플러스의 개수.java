@@ -37,6 +37,8 @@ public class Main {
             if((i != x && map[i][eY] == '0') || (i == x && map[x][eY] == '1')) continue;
             return false;
         }
+        sY++;
+        eY--;
         for (int i = sY; i <= eY; i++) {
             if((i != y && map[sX][i] == '0') || (i == y && map[sX][y] == '1')) continue;
             return false;
