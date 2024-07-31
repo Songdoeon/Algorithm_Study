@@ -11,7 +11,7 @@ public class Main {
             String exec = br.readLine();
             if(exec.equals("ENTER")) {
                 ans += set.size();
-                set.clear();
+                set = new HashSet<>();
             }
             else set.add(exec);
         }
