@@ -14,7 +14,7 @@ class Main {
             N = Integer.parseInt(br.readLine());
             arr = new String[N];
             for (int i = 0; i < N; i++) {
-                arr[i] = br.readLine().replace(" ","");
+                arr[i] = br.readLine();
             }
             Arrays.sort(arr, String::compareTo);
             for (int i = 0; i < N - 1; i++) {
