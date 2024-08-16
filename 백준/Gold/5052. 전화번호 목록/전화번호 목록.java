@@ -20,13 +20,11 @@ class Main {
             for (int i = 0; i < N - 1; i++) {
                 if (arr[i + 1].startsWith(arr[i])) {
                     find = true;
-                    sb.append("NO").append('\n');
                     break;
                 }
             }
-            if (!find) {
-                sb.append("YES").append('\n');
-            }
+            if (find) sb.append("NO").append('\n');
+            else sb.append("YES").append('\n');
         }
         System.out.println(sb);
     }
