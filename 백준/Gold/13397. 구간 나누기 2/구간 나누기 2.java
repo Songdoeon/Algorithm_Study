@@ -3,7 +3,7 @@ import java.util.StringTokenizer;
 
 public class Main {
     static int N, M;
-    static int[] arr, dp;
+    static int[] arr;
 
     static int check(int mid){
         int cnt = 1;
@@ -14,7 +14,6 @@ public class Main {
             e = Math.max(e, arr[i]);
 
             if(e - s > mid) {
-//                System.out.println(e + " - " + s);
                 i--;
                 cnt++;
                 s = 10_001;
@@ -32,7 +31,6 @@ public class Main {
         M = Integer.parseInt(st.nextToken());
 
         arr = new int[N + 1];
-        dp = new int[N + 1];
 
         int min = 10_001;
         int max = 0;
@@ -40,14 +38,13 @@ public class Main {
         st = new StringTokenizer(br.readLine());
         for (int i = 1; i <= N; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
-            dp[i] = dp[i - 1] + arr[i];
             min = Math.min(min, arr[i]);
             max = Math.max(max, arr[i]);
         }
         int s = 0;
         int e = (max - min) + 1;
         int mid;
-        int ans = 10_001;
+        int ans = 0;
         while(s < e){
             mid = (s + e) / 2;
             int cnt = check(mid);
@@ -59,6 +56,6 @@ public class Main {
                 s = mid + 1;
             }
         }
-        System.out.println(ans == 10_001 ? 0 : ans);
+        System.out.println(ans);
     }
 }
