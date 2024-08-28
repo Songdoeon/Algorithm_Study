@@ -9,14 +9,14 @@ public class Main {
         StringBuilder sb = new StringBuilder();
         Map<String, Integer> map = new TreeMap<>();
         for (int i = 0; i < N; i++) {
-            String[] arg = br.readLine().split("\\.");
-            map.put(arg[1], map.getOrDefault(arg[1], 0) + 1);
+            String exec = br.readLine();
+            String arg = exec.substring(exec.indexOf('.') + 1);
+            map.put(arg, map.getOrDefault(arg, 0) + 1);
         }
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            sb.append(entry.getKey()).append(' ').append(entry.getValue()).append("\n");
 
-        for (String key : map.keySet()) {
-            sb.append(key).append(' ').append(map.get(key)).append("\n");
         }
-
 
         System.out.println(sb);
     }
