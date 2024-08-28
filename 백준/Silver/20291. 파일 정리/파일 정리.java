@@ -7,16 +7,13 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         N = Integer.parseInt(br.readLine());
         StringBuilder sb = new StringBuilder();
-        Map<String, Integer> map = new HashMap<>();
+        Map<String, Integer> map = new TreeMap<>();
         for (int i = 0; i < N; i++) {
             String[] arg = br.readLine().split("\\.");
             map.put(arg[1], map.getOrDefault(arg[1], 0) + 1);
         }
 
-        Queue<String> q = new PriorityQueue<>(map.keySet());
-
-        while (!q.isEmpty()) {
-            String key = q.poll();
+        for (String key : map.keySet()) {
             sb.append(key).append(' ').append(map.get(key)).append("\n");
         }
 
