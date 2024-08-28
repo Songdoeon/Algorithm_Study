@@ -1,9 +1,5 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
     static int N;
@@ -17,7 +13,12 @@ public class Main {
             map.put(arg[1], map.getOrDefault(arg[1], 0) + 1);
         }
 
-        map.keySet().stream().sorted().forEach(key -> sb.append(key).append(' ').append(map.get(key)).append("\n"));
+        Queue<String> q = new PriorityQueue<>(map.keySet());
+
+        while (!q.isEmpty()) {
+            String key = q.poll();
+            sb.append(key).append(' ').append(map.get(key)).append("\n");
+        }
 
 
         System.out.println(sb);
