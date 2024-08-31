@@ -22,18 +22,14 @@ class Main {
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             arr[i] = new Mos(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
-        }
-
-        Arrays.sort(arr, Comparator.comparingInt(o -> o.start));
-        int idx = 0;
-        for (int i = 0; i < N; i++) {
             starts[i] = arr[i].start;
-        }
-        Arrays.sort(arr, Comparator.comparingInt(o -> o.end));
-
-        for (int i = 0; i < N; i++) {
             ends[i] = arr[i].end;
         }
+
+        Arrays.sort(starts);
+        Arrays.sort(ends);
+        int idx = 0;
+        
         int max = ends[N - 1];
         int ans = 0;
         int ret = 0;
