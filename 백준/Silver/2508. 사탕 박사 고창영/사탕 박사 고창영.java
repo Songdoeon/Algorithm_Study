@@ -11,22 +11,23 @@ class Main {
         StringBuilder sb = new StringBuilder();
         StringTokenizer st;
         T = Integer.parseInt(br.readLine());
-        
+        char[][] map;
         for (int t = 0; t < T; t++) {
             br.readLine();
             st = new StringTokenizer(br.readLine());
             N = Integer.parseInt(st.nextToken());
             M = Integer.parseInt(st.nextToken());
             int cnt = 0;
-            char[][] map = new char[N][M];
+            map = new char[N][M];
             for (int i = 0; i < N; i++) {
-                String line = br.readLine();
+                map[i] = br.readLine().toCharArray();
                 for (int j = 0; j < M; j++) {
-                    map[i][j] = line.charAt(j);
-                    if(j > 1 && map[i][j] == row[0] &&
+                    if(map[i][j] == row[0] &&
+                            j > 1 &&
                             map[i][j - 1] == row[1] &&
                             map[i][j - 2] == row[2]) cnt++;
-                    else if(i > 1 && map[i][j] == column[0] &&
+                    else if(map[i][j] == column[0] &&
+                            i > 1  &&
                             map[i - 1][j] == column[1] &&
                             map[i - 2][j] == column[2]) cnt++;
                 }
