@@ -6,15 +6,19 @@ class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
         Deque<Integer> stack = new ArrayDeque<>();
-        double sum = 0;
+        int sum = 0;
+        int num;
         for (int i = 0; i < N; i++) {
-            int n = Integer.parseInt(br.readLine());
-            if(!stack.isEmpty() && n == 0) sum -= stack.pop();
-            else {
-                stack.push(n);
-                sum += n;
+            num = Integer.parseInt(br.readLine());
+            if(num == 0) {
+                stack.pop();
+            }else {
+                stack.push(num);
             }
         }
-        System.out.println((int) sum);
+        for (int i : stack) {
+            sum += i;
+        }
+        System.out.println(sum);
     }
 }
