@@ -11,18 +11,21 @@ class Main {
         arr = new int[N];
         dp = new int[INF];
         int[] cnt = new int[INF];
+        boolean[] visited = new boolean[INF];
         int max = 0;
         for (int i = 0; i < N; i++) {
             arr[i] = Integer.parseInt(br.readLine());
             cnt[arr[i]]++;
-//            max = Math.max(max, arr[i]);
+            max = Math.max(max, arr[i]);
         }
-        for (int i = 0; i < INF; i++) {
-            if(cnt[i] == 0) continue;
-            int n = i;
-            while (n < INF){
-                dp[n] += cnt[i];
-                n += i;
+        for (int i = 0; i < N; i++) {
+            int num = arr[i];
+            if(visited[num]) continue;
+            visited[num] = true;
+            int n = num;
+            while (n <= max){
+                dp[n] += cnt[num];
+                n += num;
             }
         }
         for (int i = 0; i < N; i++) {
