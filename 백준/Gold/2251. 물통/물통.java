@@ -21,6 +21,7 @@ class Bucket{
 public class Main {
     static int maxA, maxB, maxC;
     static boolean[][][] visited;
+    static int[] cnt;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
@@ -29,6 +30,7 @@ public class Main {
         maxA  = Integer.parseInt(st.nextToken());
         maxB = Integer.parseInt(st.nextToken());
         maxC = Integer.parseInt(st.nextToken());
+        cnt = new int[maxC + 1];
         visited = new boolean[maxA + 1][maxB + 1][maxC + 1];
         Queue<Bucket> q = new ArrayDeque<>();
         Bucket buc = new Bucket(0, 0, maxC);
@@ -41,7 +43,7 @@ public class Main {
             int c = bucket.c;
             if(visited[a][b][c]) continue;
             visited[a][b][c] = true;
-            if(a == 0) pq.add(c);
+            if(a == 0) cnt[c]++;
 //          a -> b
             if(a + b >= maxB) q.offer(new Bucket(a - (maxB - b), maxB, c));
             else q.offer(new  Bucket(0, a + b, c));
@@ -66,8 +68,8 @@ public class Main {
             else q.offer(new Bucket(a, b + c, 0));
         }
 
-        for (Integer i : pq) {
-            sb.append(i).append(' ');
+        for (int i = 0; i <= maxC; i++) {
+            if(cnt[i] != 0) sb.append(i).append(' ');
         }
         System.out.println(sb);
 
