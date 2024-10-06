@@ -38,7 +38,6 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
         StringTokenizer st = new StringTokenizer(br.readLine());
-        Set<Integer> pq = new TreeSet<>();
         A = Integer.parseInt(st.nextToken());
         B = Integer.parseInt(st.nextToken());
         C = Integer.parseInt(st.nextToken());
