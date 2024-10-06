@@ -20,7 +20,7 @@ class Bucket{
 }
 public class Main {
     static int maxA, maxB, maxC;
-    static boolean[][][] visited = new boolean[201][201][201];
+    static boolean[][][] visited;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
@@ -29,6 +29,7 @@ public class Main {
         maxA  = Integer.parseInt(st.nextToken());
         maxB = Integer.parseInt(st.nextToken());
         maxC = Integer.parseInt(st.nextToken());
+        visited = new boolean[maxA + 1][maxB + 1][maxC + 1];
         Queue<Bucket> q = new ArrayDeque<>();
         Bucket buc = new Bucket(0, 0, maxC);
 //        visited[0][0][maxC] = true;
