@@ -2,73 +2,50 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
-import java.util.LinkedList;
-import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.TreeSet;
 
-class Bucket{
-    int a, b, c;
-
-    public Bucket(int a, int b, int c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-    }
-}
 public class Main {
-    static int maxA, maxB, maxC;
+    static int A, B, C;
     static boolean[][][] visited;
     static int[] cnt;
+    static void find(int a, int b, int c){
+        if(visited[a][b][c]) return;
+        visited[a][b][c] = true;
+        if(a == 0) cnt[c]++;
+
+        if(a+b <= B) find(0, a+b, c);
+        else find((a+b)-B, B, c);
+
+        if(a+c <= C) find(0, b, a+c);
+        else find((a+c)-C, b, C);
+
+        if(b+a <= A) find(b+a, 0, c);
+        else find(A, (b+a)-A, c);
+
+        if(b+c <= C) find(a, 0, b+c);
+        else find(a, (b+c)-C, C);
+
+        if(c+a <= A) find(c+a, b, 0);
+        else find(A, b, (c+a)-A);
+
+        if(c+b <= B) find(a, c+b, 0);
+        else find(a, B, (c+b)-B);
+    }
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
         StringTokenizer st = new StringTokenizer(br.readLine());
         Set<Integer> pq = new TreeSet<>();
-        maxA  = Integer.parseInt(st.nextToken());
-        maxB = Integer.parseInt(st.nextToken());
-        maxC = Integer.parseInt(st.nextToken());
-        cnt = new int[maxC + 1];
-        visited = new boolean[maxA + 1][maxB + 1][maxC + 1];
-        Queue<Bucket> q = new ArrayDeque<>();
-        Bucket buc = new Bucket(0, 0, maxC);
-//        visited[0][0][maxC] = true;
-        q.add(buc);
-        while (!q.isEmpty()) {
-            Bucket bucket = q.poll();
-            int a = bucket.a;
-            int b = bucket.b;
-            int c = bucket.c;
-            if(visited[a][b][c]) continue;
-            visited[a][b][c] = true;
-            if(a == 0) cnt[c]++;
-//          a -> b
-            if(a + b >= maxB) q.offer(new Bucket(a - (maxB - b), maxB, c));
-            else q.offer(new  Bucket(0, a + b, c));
-//          a -> c
-            if(a + c >= maxC) q.offer(new Bucket(a - (maxC - c), b, maxC));
-            else q.offer(new Bucket(0, b, a + c));
-
-//            b -> a
-            if(b + a >= maxA) q.offer(new Bucket(maxA, b - (maxA - a), c));
-            else q.offer(new Bucket(a + b, 0, c));
-
-//            b -> c
-            if(b + c >= maxC) q.offer(new Bucket(a, b - (maxC - c), maxC));
-            else q.offer(new Bucket(a, 0, b + c));
-
-//            c -> a
-            if(a + c >= maxA) q.offer(new Bucket(maxA, b, c - (maxA - a)));
-            else q.offer(new Bucket(a + c, b, 0));
-
-//            c -> b
-            if(b + c >= maxB) q.offer(new Bucket(a, maxB, c - (maxB - b)));
-            else q.offer(new Bucket(a, b + c, 0));
-        }
-
-        for (int i = 0; i <= maxC; i++) {
+        A = Integer.parseInt(st.nextToken());
+        B = Integer.parseInt(st.nextToken());
+        C = Integer.parseInt(st.nextToken());
+        cnt = new int[C + 1];
+        visited = new boolean[A + 1][B + 1][C + 1];
+        find(0, 0, C);
+        for (int i = 0; i <= C; i++) {
             if(cnt[i] != 0) sb.append(i).append(' ');
         }
         System.out.println(sb);
