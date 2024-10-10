@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -34,8 +33,6 @@ public class Main {
         Arrays.sort(sum2);
         int idx1 = 0;
         int idx2 = N * N - 1;
-//        System.out.println(Arrays.toString(sum1));
-//        System.out.println(Arrays.toString(sum2));
 
         while (idx1 < N * N && idx2 >= 0) {
             if (sum1[idx1] + sum2[idx2] == 0) {
