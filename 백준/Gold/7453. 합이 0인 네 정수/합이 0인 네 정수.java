@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -32,16 +31,18 @@ public class Main {
 
         Arrays.sort(sum1);
         Arrays.sort(sum2);
+        int max = N * N;
         int idx1 = 0;
-        int idx2 = N * N - 1;
+        int idx2 = max - 1;
 //        System.out.println(Arrays.toString(sum1));
 //        System.out.println(Arrays.toString(sum2));
 
-        while (idx1 < N * N && idx2 >= 0) {
-            if (sum1[idx1] + sum2[idx2] == 0) {
+        while (idx1 < max && idx2 >= 0) {
+            int sum = sum1[idx1] + sum2[idx2];
+            if (sum == 0) {
                 long tempA = 1;
                 long tempB = 1;
-                while(idx1 < N * N - 1 && sum1[idx1] == sum1[idx1 + 1]){
+                while(idx1 < max - 1 && sum1[idx1] == sum1[idx1 + 1]){
                     idx1++;
                     tempA++;
                 }
@@ -53,10 +54,10 @@ public class Main {
                 idx1++;
                 idx2--;
             }
-            else if(sum1[idx1] + sum2[idx2] < 0) {
+            else if(sum < 0) {
                 idx1++;
             }
-            else if(sum1[idx1] + sum2[idx2] > 0) {
+            else{
                 idx2--;
             }
         }
