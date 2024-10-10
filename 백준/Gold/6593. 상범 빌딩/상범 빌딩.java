@@ -49,7 +49,6 @@ public class Main {
                     for (int k = 0; k < M; k++) {
                         map[i][j][k] = line.charAt(k);
                         if(map[i][j][k] == 'S') start = new Pos(i, j, k, 0);
-                        else if(map[i][j][k] == 'E') end = new Pos(i, j, k, 0);
                     }
                 }
                 br.readLine();
