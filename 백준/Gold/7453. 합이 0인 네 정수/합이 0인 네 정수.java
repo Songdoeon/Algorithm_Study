@@ -40,8 +40,8 @@ public class Main {
         while (idx1 < max && idx2 >= 0) {
             int sum = sum1[idx1] + sum2[idx2];
             if (sum == 0) {
-                long tempA = 1;
-                long tempB = 1;
+                int tempA = 1;
+                int tempB = 1;
                 while(idx1 < max - 1 && sum1[idx1] == sum1[idx1 + 1]){
                     idx1++;
                     tempA++;
@@ -50,7 +50,7 @@ public class Main {
                     idx2--;
                     tempB++;
                 }
-                ans += tempA * tempB;
+                ans += (long) tempA * tempB;
                 idx1++;
                 idx2--;
             }
