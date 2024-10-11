@@ -8,8 +8,8 @@ public class Main {
     static int[] arr;
     static int[] cnt = new int[20_000_001];
     static void search(int depth, int sum){
-        cnt[sum]++;
         if(depth == N) {
+            cnt[sum]++;
             return ;
         }
         search(depth+1, sum + arr[depth]);
