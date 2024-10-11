@@ -6,10 +6,10 @@ import java.util.*;
 public class Main {
     static int N;
     static int[] arr;
-    static int[] cnt = new int[20_000_001];
+    static boolean[] cnt = new boolean[20_000_001];
     static void search(int depth, int sum){
         if(depth == N) {
-            cnt[sum]++;
+            cnt[sum] = true;
             return ;
         }
         search(depth+1, sum + arr[depth]);
@@ -17,7 +17,6 @@ public class Main {
     }
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
         StringTokenizer st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
         arr = new int[N];
@@ -32,7 +31,7 @@ public class Main {
         search(0, 0);
 
         for (int i = 1; i < 20_000_001; i++) {
-            if(cnt[i] == 0) {
+            if(!cnt[i]) {
                 System.out.println(i);
                 return ;
             }
