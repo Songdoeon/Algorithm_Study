@@ -11,14 +11,6 @@ class Wood{
         this.tree = tree;
         this.cnt = cnt;
     }
-
-    @Override
-    public String toString() {
-        return "Wood{" +
-                "tree=" + tree +
-                ", cnt=" + cnt +
-                '}';
-    }
 }
 public class Main {
     static int N, M;
