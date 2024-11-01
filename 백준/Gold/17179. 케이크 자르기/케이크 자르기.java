@@ -31,11 +31,10 @@ public class Main
                 if(count <= C){
                     rt = mid;
                 }else{
-                    answer = Math.max(answer, mid);
                     lt = mid + 1;
                 }
             }
-            sb.append(answer).append("\n");
+            sb.append(rt - 1).append("\n");
         }
 //        System.out.println(Arrays.toString(arr));
         System.out.println(sb);
