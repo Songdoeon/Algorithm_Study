@@ -10,6 +10,8 @@ public class Main {
         StringBuilder sb = new StringBuilder();
 
         N = Integer.parseInt(br.readLine());
+        int[] arr;
+        int[] arr2;
         StringTokenizer st;
         while (N-- > 0) {
             st = new StringTokenizer(br.readLine());
@@ -17,15 +19,20 @@ public class Main {
             String s = st.nextToken();
             String t = st.nextToken();
             int len = s.length();
-            List<Integer> list = new ArrayList<>();
-            List<Integer> list2 = new ArrayList<>();
+            arr = new int[len];
+            arr2 = new int[len];
+            int idx = 0;
+            int idx2 = 0;
             for (int i = 0; i < len; i++) {
-                if(s.charAt(i) == 'b') list.add(i);
-                if(t.charAt(i) == 'b') list2.add(i);
+                if(s.charAt(i) == 'b') {
+                    arr[idx++] = i;
+                }
+                if(t.charAt(i) == 'b') {
+                    arr2[idx2++] = i;
+                }
             }
-            int size = list.size();
-            for (int i = 0; i < size; i++) {
-                sum += Math.abs(list.get(i) - list2.get(i));
+            for (int i = 0; i < idx; i++) {
+                sum += Math.abs(arr[i] - arr2[i]);
             }
             sb.append(sum).append('\n');
         }
