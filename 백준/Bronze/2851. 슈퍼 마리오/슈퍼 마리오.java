@@ -1,12 +1,12 @@
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 public class Main 
 {
-    public static void main(String[] args) throws Exception
-    {
-    	Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws Exception{
+    	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     	int arr[] = new int[10];
     	int sum = 0;
-    	for(int i = 0; i < 10; ++i) arr[i] = sc.nextInt();
+    	for(int i = 0; i < 10; ++i) arr[i] = Integer.parseInt(br.readLine());
     	for(int i = 0; i < 10; ++i)
     	{
     		int temp = sum;
