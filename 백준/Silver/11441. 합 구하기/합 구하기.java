@@ -15,10 +15,9 @@ class Main {
         int t = Integer.parseInt(br.readLine());
         while (t-- > 0) {
             st = new StringTokenizer(br.readLine());
-            int start = Integer.parseInt(st.nextToken()) - 1;
-            int end = Integer.parseInt(st.nextToken());
-            sb.append(arr[end] - arr[start]);
-            sb.append('\n');
+            int s = Integer.parseInt(st.nextToken()) - 1;
+            int e = Integer.parseInt(st.nextToken());
+            sb.append(arr[e] - arr[s]).append('\n');
         }
         System.out.println(sb);
     }
