@@ -1,7 +1,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -10,8 +11,8 @@ public class Main {
         StringBuilder sb = new StringBuilder();
         for (int t = 0; t < testCases; t++) {
             String input = br.readLine();
-            Stack<Character> left = new Stack<>();
-            Stack<Character> right = new Stack<>();
+            Deque<Character> left = new ArrayDeque<>();
+            Deque<Character> right = new ArrayDeque<>();
 
             for (char ch : input.toCharArray()) {
                 if (ch == '-') { // 백스페이스
