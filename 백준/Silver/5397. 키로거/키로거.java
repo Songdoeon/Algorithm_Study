@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int testCases = Integer.parseInt(br.readLine());
-
+        StringBuilder sb = new StringBuilder();
         for (int t = 0; t < testCases; t++) {
             String input = br.readLine();
             Stack<Character> left = new Stack<>();
@@ -46,7 +46,8 @@ public class Main {
             }
             result.append(rightResult);
 
-            System.out.println(result);
+            sb.append(result).append('\n');
         }
+        System.out.println(sb);
     }
 }
