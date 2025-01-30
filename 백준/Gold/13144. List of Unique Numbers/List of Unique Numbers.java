@@ -12,21 +12,21 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         N = Integer.parseInt(st.nextToken());
-        arr = new int[N + 1];
+        arr = new int[N];
         st = new StringTokenizer(br.readLine());
-        for (int i = 1; i <= N; i++) {
+        for (int i = 0; i < N; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        int s = 1;
+        int s = 0;
         int e = 0;
         long ans = 0;
-        while (s <= N){
-            while(e + 1 <= N && visited[arr[e + 1]] == 0){
-                visited[arr[++e]]++;
+        while (e < N){
+            if(visited[arr[e]] == 0){
+                ans += e - s + 1;
+                visited[arr[e++]]++;
             }
-            ans += e - s + 1;
-            visited[arr[s++]]--;
+            else visited[arr[s++]]--;
         }
         System.out.println(ans);
     }
