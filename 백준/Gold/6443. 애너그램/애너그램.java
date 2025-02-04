@@ -1,8 +1,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class Main {
     static int N, len;
@@ -15,7 +15,7 @@ public class Main {
         if(depth == len){
             String str = String.valueOf(selected);
             if(set.contains(str))return ;
-            set.add(str);
+            sb.append(str).append('\n');
             return ;
         }
 
@@ -42,11 +42,8 @@ public class Main {
                 chars[c - 'a']++;
             }
             selected = new char[len];
-            set = new TreeSet<>();
+            set = new HashSet<>();
             check(0);
-            for(String s : set){
-                sb.append(s).append('\n');
-            }
         }
 
         System.out.println(sb);
