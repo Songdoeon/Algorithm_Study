@@ -7,12 +7,10 @@ import java.util.StringTokenizer;
 
 class Main {
     static int T, N, M;
-    static int[] arr1, arr2;
-
+    static int[] arr1;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         Map<Integer, Integer> map1 = new HashMap<>();
-        Map<Integer, Integer> map2 = new HashMap<>();
         T = Integer.parseInt(br.readLine());
         N = Integer.parseInt(br.readLine());
         arr1 = new int[N + 1];
@@ -27,14 +25,14 @@ class Main {
             }
         }
         M = Integer.parseInt(br.readLine());
-        arr2 = new int[M + 1];
+        arr1 = new int[M + 1];
         st = new StringTokenizer(br.readLine());
         long ans = 0;
         for (int i = 1; i <= M; i++) {
             int n = Integer.parseInt(st.nextToken());
-            arr2[i] = arr2[i - 1] + n;
+            arr1[i] = arr1[i - 1] + n;
             for (int j = 0; j < i; j++) {
-                int num = arr2[i] - arr2[j];
+                int num = arr1[i] - arr1[j];
                 if(map1.containsKey(T - num)) ans += map1.get(T - num);
             }
         }
