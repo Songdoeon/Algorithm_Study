@@ -53,6 +53,7 @@ class Main {
             for(int j = 0; j < M; j++){
                 Pos p = new Pos(i, j, 1, new StringBuilder());
                 p.add(map[i][j]);
+                hash.put(String.valueOf(map[i][j]), hash.getOrDefault(String.valueOf(map[i][j]), 0) + 1);
                 queue = new ArrayDeque<>();
                 queue.add(p);
                 while(!queue.isEmpty()){
