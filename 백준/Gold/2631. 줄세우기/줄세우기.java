@@ -15,7 +15,7 @@ class Main {
         }
         int[] dp = new int[N];
         int idx = 0;
-        Arrays.fill(dp, Integer.MAX_VALUE);
+        Arrays.fill(dp, N + 1);
         for (int i = 0; i < N; i++) {
             for (int j = 0; j <= idx; j++) {
                 if(arr[i] < dp[j]) {
