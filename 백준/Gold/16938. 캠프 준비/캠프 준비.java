@@ -10,16 +10,16 @@ public class Main {
     static int[] arr;
     static int ans = 0;
     static Set<Integer> set = new HashSet<>();
-    static void search(int depth, int max, int min, int sum, int mask){
-        if(!set.contains(mask) && sum >= L && sum <= R && max - min >= X) {
-            ans++;
-            set.add(mask);
+    static void search(int depth, int max, int min, int sum){
+        if (R < sum) return;
+        if(depth == N){
+            if(sum >= L && sum <= R && max - min >= X)ans++;
+            return ;
         }
-        if(depth >= N) return ;
         int tempMax = Math.max(max, arr[depth]);
         int tempMin= Math.min(min, arr[depth]);
-        search(depth+1, tempMax, tempMin, sum+arr[depth],mask | 1 << depth);
-        search(depth+1, max, min, sum, mask);
+        search(depth+1, tempMax, tempMin, sum+arr[depth]);
+        search(depth+1, max, min, sum);
     }
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -33,7 +33,7 @@ public class Main {
         for (int i = 0; i < N; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
-        search(0, 0, 10_000_001, 0, 0);
+        search(0, 0, 10_000_001, 0);
         System.out.println(ans);
     }
 }
