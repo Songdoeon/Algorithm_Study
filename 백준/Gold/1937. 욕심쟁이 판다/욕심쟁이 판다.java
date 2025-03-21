@@ -1,6 +1,5 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 class Main {
@@ -13,7 +12,7 @@ class Main {
         return x < 0 || x >= N || y < 0 || y >= N;
     }
     static int search(int x, int y){
-        if(dp[x][y] != -1) return dp[x][y];
+        if(dp[x][y] != 0) return dp[x][y];
         dp[x][y] = 1;
         for(int d = 0; d < 4; d++){
             int nx = x + dx[d];
@@ -37,9 +36,6 @@ class Main {
         }
         int ans = 0;
         dp = new int[N][N];
-        for (int i = 0; i < N; i++) {
-            Arrays.fill(dp[i], -1);
-        }
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 ans = Math.max(ans, search(i, j));
