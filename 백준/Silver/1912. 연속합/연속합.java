@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
+// 10:26 시작
 
 class Main {
     static int N;
@@ -16,8 +17,7 @@ class Main {
         int ans = -100_000_001;
         for (int i = 1; i <= N; i++) {
             int n = Integer.parseInt(st.nextToken());
-            dp[i] = Math.max(dp[i - 1] + n, n);
-            ans = Math.max(dp[i], ans);
+            ans = Math.max(dp[i] = Math.max(dp[i - 1] + n, n), ans);
         }
         System.out.println(ans);
     }
