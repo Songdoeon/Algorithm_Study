@@ -1,28 +1,17 @@
-import java.util.*;
 import java.io.*;
-public class Main{
-    static long N;
-	public static void main(String[] args) throws Exception{
-	    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	    N = Long.parseLong(br.readLine());
-	    
-	    long num = 1, three = 1, two = 1;
-	    for(;;num++){
-	        three *= 2;
-	        two *= 3;
-	        if(three>=N) break;
-	    }
-	    
-	    long answer = 0;
-	    for(;num>=0;num--){
-	        if(three<=N) {
-	            N-=three;
-	            answer += two;
-	        } 
-	        three/=2;
-	        two/=3;
-	    }
-	    
-		System.out.println(answer);
-	}
+
+class Main{
+    public static void main(String[] args) throws Exception{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        long n = Long.parseLong(br.readLine());
+        long ans = 0;
+        long num = 1;
+        long idx = 0;
+        long sum;
+        while ((sum = 1L << idx++) < n * 2){
+            if((n & sum) > 0)ans += num;
+            num *= 3;
+        }
+        System.out.println(ans);
+    }
 }
