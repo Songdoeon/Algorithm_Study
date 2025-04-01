@@ -1,38 +1,33 @@
-import java.io.*;
-import java.util.*;
-public class Main {
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 
-	static char[] str1;
-	static char[] str2;
-	static Integer[][] dp;
-	static int max = Integer.MIN_VALUE;
-	
-	public static void main(String[] args) throws IOException {
-		
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+// 14:25 시작
+class Main{
+    static char[] s1, s2;
+    static int len1, len2;
+    static int[][] dp;
+    static int search(int idx1, int idx2){
+        if(idx1 < 0 || idx2 < 0) return 0;
 
-		str1 = br.readLine().toCharArray();
-		str2 = br.readLine().toCharArray();
-		
-		dp = new Integer[str1.length][str2.length];
+        if(dp[idx1][idx2] != -1) return dp[idx1][idx2];
+        dp[idx1][idx2] = s1[idx1] == s2[idx2] ?
+                search(idx1 - 1, idx2 - 1) + 1 :
+                Math.max(search(idx1 - 1, idx2), search(idx1, idx2 - 1));
+        return dp[idx1][idx2];
+    }
+    public static void main(String[] args) throws Exception{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        s1 = br.readLine().toCharArray();
+        s2 = br.readLine().toCharArray();
 
+        len1 = s1.length;
+        len2 = s2.length;
 
-		System.out.println(lcs(str1.length-1, str2.length-1));
-}
-	public static int lcs(int a, int b) {
-		
-		if(a<0||b<0)
-			return 0;
-		
-		if(dp[a][b]==null) {
-			dp[a][b]=0;
-			if(str1[a] == str2[b])
-				dp[a][b] = lcs(a-1, b-1)+1;
-			else
-				dp[a][b] = Math.max(lcs(a-1,b), lcs(a,b-1));
-		}
-		
-		return dp[a][b];
-	}
-
+        dp = new int[len1][len2];
+        for (int i = 0; i < len1; i++) {
+            Arrays.fill(dp[i], -1);
+        }
+        System.out.println(search(len1 - 1, len2 - 1));
+    }
 }
