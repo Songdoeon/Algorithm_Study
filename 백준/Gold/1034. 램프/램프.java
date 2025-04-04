@@ -1,8 +1,6 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
@@ -21,17 +19,16 @@ class Main{
             map.put(s, map.getOrDefault(s, 0) + 1);
         }
         int K = Integer.parseInt(br.readLine());
-        List<String> list = new ArrayList<>(map.keySet());
-        list.sort((o1, o2) -> map.get(o2) - map.get(o1));
-        int size = list.size();
-        for (int i = 0; i < size; i++) {
-            String s = list.get(i);
-            int need = s.replace("1","").length();
-            if((need <= K) && ((need % 2) == (K % 2))) {
-                System.out.println(map.get(s));
-                return ;
+        int ans = 0;
+        for (String s : map.keySet()) {
+            int cnt = 0;
+            for (int i = 0; i < M; i++) {
+                if(s.charAt(i) == '0') cnt++;
+            }
+            if((cnt <= K) && ((cnt & 1) == (K & 1))){
+                ans = Math.max(ans, map.get(s));
             }
         }
-        System.out.println(0);
+        System.out.println(ans);
     }
 }
