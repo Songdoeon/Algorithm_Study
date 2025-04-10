@@ -43,21 +43,13 @@ class Main{
                 }
                 if(opposite[x] == 0){
                     opposite[x] = y;
-                    if(opposite[y] != 0) {
-                        union(x, opposite[y]);
-                        continue;
-                    }
+                }else{
+                    union(opposite[x], y);
                 }
                 if(opposite[y] == 0){
                     opposite[y] = x;
-                    if(opposite[x] != 0) {
-                        union(opposite[x], y);
-                        continue;
-                    }
-                }
-                if(opposite[y] != opposite[x]){
-                    union(x, opposite[y]);
-                    union(y, opposite[x]);
+                }else{
+                    union(opposite[y], x);
                 }
             }
             if(!find)sb.append("NO").append('\n');
