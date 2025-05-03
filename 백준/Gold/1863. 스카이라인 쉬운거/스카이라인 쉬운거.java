@@ -10,24 +10,16 @@ import java.util.StringTokenizer;
 
 public class Main {
     static int N, M;
-    static int[][] arr;
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
         int ans = 0;
-        StringBuilder sb = new StringBuilder();
         Deque<Integer> stack = new ArrayDeque<>();
-        arr = new int[N][2];
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
-            arr[i][0] = Integer.parseInt(st.nextToken());
-            arr[i][1] = Integer.parseInt(st.nextToken());
-        }
-        Arrays.sort(arr, Comparator.comparingInt(o -> o[0]));
-        for (int i = 0; i < N; i++) {
-            int high = arr[i][1];
-            
+            int idx = Integer.parseInt(st.nextToken());
+            int high = Integer.parseInt(st.nextToken());
             while (!stack.isEmpty() && stack.peek() > high){
                 stack.pop();
                 ans++;
