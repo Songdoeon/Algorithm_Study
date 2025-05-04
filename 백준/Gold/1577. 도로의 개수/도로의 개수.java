@@ -33,12 +33,12 @@ class Const{
 }
 public class Main {
     static int N, M, K;
-    static int[] dx = {-1, 0};
-    static int[] dy = {0, -1};
+    static int[] dx = {1, 0};
+    static int[] dy = {0, 1};
     static long[][] dp;
     static Set<Const> set = new HashSet<>();
     static long search(int x, int y){
-        if(x == 0 && y == 0) return 1;
+        if(x == N && y == M) return 1;
         if(dp[x][y] != -1) return dp[x][y];
 
         long ret = 0;
@@ -78,7 +78,7 @@ public class Main {
             set.add(new Const(c, d, a, b));
         }
 
-        System.out.println(search(N, M));
+        System.out.println(search(0, 0));
     }
 }
 
