@@ -18,19 +18,19 @@ public class Main {
         for (int i = 0; i < N; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
-        int[] dp = new int[N];
-        Arrays.fill(dp, 1);
-        
-        int ans = 1;
-
+        int[] dp = new int[N + 1];
+        Arrays.fill(dp, 1001);
+        dp[0] = 0;
+        int idx = 1;
         for (int i = 0; i < N; i++) {
-            for (int j = 0; j < i; j++) {
-                if(arr[j] < arr[i]){
-                    dp[i] = Math.max(dp[i], dp[j] + 1);
+            for (int j = 1; j <= idx; j++) {
+                if(arr[i] < dp[j] && arr[i] > dp[j - 1]) {
+                    if(j == idx)idx++;
+                    dp[j] = arr[i];
+                    break;
                 }
             }
-            ans = Math.max(ans, dp[i]);
         }
-        System.out.println(ans);
+        System.out.println(idx - 1);
     }
 }
