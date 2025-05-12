@@ -3,6 +3,8 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.*;
 
+// 13265
+
 public class Main {
     static int T, N, M;
     static int[] parents;
@@ -12,14 +14,9 @@ public class Main {
         return parents[n] = find(parents[n]);
     }
 
-    static boolean union(int n1, int n2){
+    static void union(int n1, int n2){
         int p1 = find(n1), p2 = find(n2);
-        if(p1 == p2) return false;
-        if(p1 > p2){
-            parents[p1] = p2;
-        }
-        else parents[p2] = p1;
-        return true;
+        if(p1 != p2) parents[p1] = p2;
     }
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -39,23 +36,23 @@ public class Main {
             boolean find = false;
             for (int i = 0; i < M; i++) {
                 st = new StringTokenizer(br.readLine());
-                int n1 = Integer.parseInt(st.nextToken());
-                int n2 = Integer.parseInt(st.nextToken());
-
-                if(enemy[n1] == 0){
-                    enemy[n1] = n2;
-                }
-                if(enemy[n2] == 0){
-                    enemy[n2] = n1;
-                }
-                union(n1, enemy[n2]);
-                union(n2, enemy[n1]);
-                if(find(n1) == find(n2)){
+                int n1 = find(Integer.parseInt(st.nextToken()));
+                int n2 = find(Integer.parseInt(st.nextToken()));
+                if(find || n1 == n2) {
                     find = true;
+                    continue;
                 }
+
+                int e1 = enemy[n1];
+                int e2 = enemy[n2];
+
+                if(e1 != 0) union(e1, n2);
+                else enemy[n1] = n2;
+
+                if(e2 != 0) union(n1, e2);
+                else enemy[n2] = n1;
             }
-            if(find)sb.append("impossible").append('\n');
-            else sb.append("possible").append('\n');
+            sb.append(find ? "impossible" : "possible").append('\n');
         }
         System.out.println(sb);
     }
