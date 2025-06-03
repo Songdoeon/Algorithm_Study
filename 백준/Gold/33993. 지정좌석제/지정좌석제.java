@@ -37,32 +37,17 @@ public class Main {
                 imos[i][j] += imos[i - 1][j];
             }
         }
-
+        int max = 0;
+        int ansX = N;
+        int ansY = M;
         for (int i = 1; i <= N; i++) {
             for (int j = 2; j <= M; j++) {
                 imos[i][j] += imos[i][j - 1];
-            }
-        }
-
-        int max = 0;
-        int total = 0;
-        int ansX = N;
-        int ansY = M;
-        for (int x = 1; x <= N; x++) {
-            for (int y = 1; y <= M; y++) {
-                if(visited[x][y]) continue;
-                if (imos[x][y] > max) {
-                    ansX = x;
-                    ansY = y;
-                    total = 1;
-                    max = imos[x][y];
-                }
-                else if(imos[x][y] == max) {
-                    total++;
-                    if (x < ansX || (x == ansX && y < ansY)) {
-                        ansX = x;
-                        ansY = y;
-                    }
+                if(visited[i][j]) continue;
+                if (imos[i][j] > max) {
+                    ansX = i;
+                    ansY = j;
+                    max = imos[i][j];
                 }
             }
         }
