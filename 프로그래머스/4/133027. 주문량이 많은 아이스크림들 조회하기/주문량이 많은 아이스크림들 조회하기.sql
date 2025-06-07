@@ -1,9 +1,7 @@
-SELECT h.flavor
-    FROM
-        july AS j LEFT JOIN first_half AS h
-        ON j.flavor = h.flavor
-    GROUP BY
-        j.flavor
-    ORDER BY
-        SUM(j.total_order) + AVG(h.total_order) DESC
-    LIMIT 3
+SELECT F.FLAVOR
+FROM FIRST_HALF F
+JOIN JULY J ON J.FLAVOR = F.FLAVOR
+GROUP BY F.FLAVOR 
+ORDER BY F.TOTAL_ORDER + SUM(J.TOTAL_ORDER) DESC
+limit 3
+;
