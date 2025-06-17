@@ -19,13 +19,8 @@ public class Main {
         if(s == e) return max[s][e] = min[s][e] = numbers[s];
 
         for(int idx = s; idx < e; idx++){
-            int lM = search(s, idx);
-            int rM = search(idx + 1, e);
-            int lm = min[s][idx];
-            int rm = min[idx + 1][e];
-
-            int[] l = {lm, lM};
-            int[] r = {rm, rM};
+            int[] l = {search(s, idx),  min[s][idx]};
+            int[] r = {search(idx + 1, e), min[idx + 1][e]};
 
             for (int left : l) {
                 for (int right : r){
