@@ -15,28 +15,17 @@ public class Main {
         }
         arr = new int[N];
         st = new StringTokenizer(br.readLine());
-        Queue<int[]> queue = new PriorityQueue<>((a, b) -> b[0] - a[0]);
+        Queue<Integer> queue = new PriorityQueue<>();
         for (int i = 0; i < N; i++) arr[i] = Integer.parseInt(st.nextToken());
-
         Arrays.sort(arr);
         for (int i = 1; i < N; i++) {
-            queue.offer(new int[] {arr[i] - arr[i - 1], i});
+            queue.offer(arr[i] - arr[i - 1]);
         }
-
-        int[] index = new int[K];
-        int idx = 0;
-        while(!queue.isEmpty() && --K > 0) {
-            int[] cur = queue.poll();
-            index[idx++] = cur[1];
-        }
-        Arrays.sort(index, 0, idx);
-        int start = arr[0];
         int ans = 0;
-        for (int i = 0; i < idx; i++) {
-            ans += arr[index[i] - 1] - start;
-            start = arr[index[i]];
+        int count = N - K;
+        while(count-- > 0) {
+            ans += queue.poll();
         }
-        if(index[idx] != N - 1) ans += arr[N - 1] - start;
         System.out.println(ans);
     }
 }
