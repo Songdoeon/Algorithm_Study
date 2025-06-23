@@ -19,8 +19,8 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         N = Integer.parseInt(br.readLine());
 
-        boolean[][] visited = new boolean[2001][2001]; // [화면][클립보드]
-        Queue<State> queue = new LinkedList<>();
+        boolean[][] visited = new boolean[2001][2001];
+        Queue<State> queue = new ArrayDeque<>();
 
         queue.add(new State(1, 0, 0));
         visited[1][0] = true;
@@ -32,19 +32,19 @@ public class Main {
                 System.out.println(current.time);
                 return;
             }
-            
+
             if (!visited[current.screen][current.screen]) {
                 visited[current.screen][current.screen] = true;
                 queue.add(new State(current.screen, current.screen, current.time + 1));
             }
-            
+
             if (current.clipboard > 0 && current.screen + current.clipboard <= 2000) {
                 if (!visited[current.screen + current.clipboard][current.clipboard]) {
                     visited[current.screen + current.clipboard][current.clipboard] = true;
                     queue.add(new State(current.screen + current.clipboard, current.clipboard, current.time + 1));
                 }
             }
-            
+
             if (current.screen > 0) {
                 if (!visited[current.screen - 1][current.clipboard]) {
                     visited[current.screen - 1][current.clipboard] = true;
