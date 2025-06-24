@@ -52,12 +52,17 @@ public class Main {
             Arrays.sort(arr2);
             int max = arr2[M - 1];
             int min = arr2[0];
-            
+
             int ans = 0;
 
             for (int i = 0; i < N; i++) {
-                if(arr1[i] > max) ans += M;
-                else if (arr1[i] > min)ans += search(i);
+                if(arr1[i] > max) {
+                    ans += (N - i) * M;
+                    break;
+                }
+                else if (arr1[i] > min){
+                    ans += search(i);
+                }
             }
 
             sb.append(ans).append('\n');
