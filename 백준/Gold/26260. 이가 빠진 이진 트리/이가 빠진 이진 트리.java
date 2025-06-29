@@ -17,13 +17,11 @@ public class Main {
     static int[] arr;
 
     static void search(int l, int r) {
-        if (l >= r) return;
-        int len = r - l;
-        int mid = l + (len - 1) / 2;
-        
-        search(l, mid);
+        if (l > r) return;
+        int mid = (l + r) / 2;
+        search(l, mid - 1);
         search(mid + 1, r);
-        
+
         sb.append(arr[mid]).append(' ');
     }
 
@@ -43,7 +41,7 @@ public class Main {
 
         Arrays.sort(arr);
 
-        search(0, N);
+        search(0, N - 1);
 
         System.out.println(sb);
     }
