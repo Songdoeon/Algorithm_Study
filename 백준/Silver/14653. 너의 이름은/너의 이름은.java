@@ -20,19 +20,16 @@ public class Main {
         count[0] = true;
         for (int i = 1; i <= K; i++) {
             st = new StringTokenizer(br.readLine());
-            int n = Integer.parseInt(st.nextToken());
-            int p = st.nextToken().charAt(0) - 'A';
-            arr[i][0] = n;
-            arr[i][1] = p;
+            arr[i][0] = Integer.parseInt(st.nextToken());
+            arr[i][1] = st.nextToken().charAt(0) - 'A';
             if(Q <= i) {
-                if(arr[i - 1][0] == n) count[arr[i - 1][1]] = true;
-                count[p] = true;
+                if(arr[i - 1][0] == arr[i][0]) count[arr[i - 1][1]] = true;
+                count[arr[i][1]] = true;
             }
         }
-        StringBuilder sb = new StringBuilder();
-
         if(arr[Q][0] == 0) System.out.println(-1);
         else {
+            StringBuilder sb = new StringBuilder();
             for (int i = 0; i < N; i++) if(!count[i]) sb.append((char)('A' + i)).append(' ');
             System.out.println(sb);
         }
