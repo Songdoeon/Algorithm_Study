@@ -15,7 +15,7 @@ public class Main {
         boolean flag = false;
         for (String arg : info.split("-")) {
             int sum = 0;
-            for (String s : arg.split("[+]")) sum += Integer.parseInt(s);
+            for (String s : arg.split("\\+")) sum += Integer.parseInt(s);
             
             if(!flag) {
                 ans += sum;
