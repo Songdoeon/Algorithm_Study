@@ -11,25 +11,17 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader  br = new BufferedReader(new InputStreamReader(System.in));
         info = br.readLine();
-        ops = info.replaceAll("[^+-]", "").toCharArray();
-        int len = ops.length;
-        nums = new int[len + 1];
-        int idx = 0;
-
-        for (String num : info.split("[+-]")) nums[idx++] = Integer.parseInt(num);
-        int ans = nums[0];
-        for (int i = 0; i < len; i++) {
-            if(ops[i] == '+') ans += nums[i + 1];
-            else{
-                int j = i;
-                int tempSum = 0;
-                while(j < len - 1 && ops[j + 1] != '-') j++;
-                for (int k = i; k <= j; k++) {
-                    tempSum += nums[k + 1];
-                }
-                i = j;
-                ans -= tempSum;
+        int ans = 0;
+        boolean flag = false;
+        for (String arg : info.split("-")) {
+            int sum = 0;
+            for (String s : arg.split("[+]")) sum += Integer.parseInt(s);
+            
+            if(!flag) {
+                ans += sum;
+                flag = true;
             }
+            else ans -= sum;
         }
         System.out.println(ans);
     }
