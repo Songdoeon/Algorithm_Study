@@ -38,7 +38,7 @@ public class Main {
     }
     static void search(int idx, int cnt){
         if(idx == 1){
-            ans = Math.max(ans, cnt);
+            ans = cnt;
             return ;
         }
         if(idx % 2 == 0){
