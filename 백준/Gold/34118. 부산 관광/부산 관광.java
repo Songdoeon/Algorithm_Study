@@ -27,6 +27,9 @@ public class Main {
 
         int ret = INF;
 
+        int s = Math.min(idx1, idx2);
+        int e = s + 4;
+        if(idx1 < N || idx2 < N) ret = Math.min(ret , search(e, e) + pp);
 
         if(idx1 < N){
             ret = Math.min(ret, search(idx1 + 1, idx2) + p1);
@@ -38,8 +41,6 @@ public class Main {
             ret = Math.min(ret, search(idx1, idx2 + 3) + p3);
             ret = Math.min(ret, search(idx1, idx2 + 5) + p5);
         }
-
-        if(idx1 < N && idx2 < N) ret = Math.min(ret , search(idx1 + 4, idx2 + 4) + pp);
 
         return dp[idx1][idx2] = ret;
     }
