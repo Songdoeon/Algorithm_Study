@@ -12,22 +12,20 @@ public class Main {
 
         int i = 0, j = N - 1;
         while (i < j) {
-            if (s.charAt(i) != s.charAt(j)) {
+            if (s.charAt(i++) != s.charAt(j--)) {
                 System.out.println(N);
                 return;
             }
-            i++;
-            j--;
         }
-        
+
         boolean flag = true;
         for (int k = 1; k < N; k++) {
-            if (s.charAt(k) != s.charAt(0)) { 
-                flag = false; 
-                break; 
+            if (s.charAt(k) != s.charAt(0)) {
+                flag = false;
+                break;
             }
         }
-        
+
         System.out.println(flag ? -1 : N - 1);
     }
 }
